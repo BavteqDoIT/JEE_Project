@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition template="/templates/page-template.xhtml">
+        <ui:define name="pageContent">
+            <h1>Kameralne Studio Pilates</h1>
+            <p:commandButton value="User List" action="userList" styleClass="ui-button-secondary"/>
+            <br/>
+            <br/>
+            <p:sidebar widgetVar="sidebar1">
+                <h2>Menu</h2>
+                <p:commandButton type="button" value="O NAS" icon="pi pi-fw pi-info-circle" styleClass="ui-button-secondary ui-button-flat" />
+                <br/>
+                <p:commandButton type="button" value="STUDIO" icon="pi pi-fw pi-building" styleClass="ui-button-secondary ui-button-flat" />
+                <br/>
+                <p:commandButton type="button" value="PILATES" icon="pi pi-fw pi-heart-fill" styleClass="ui-button-secondary ui-button-flat" />
+                <br/>
+                <p:commandButton type="button" value="OFERTA / CENNIK" icon="pi pi-fw pi-shopping-cart" styleClass="ui-button-secondary ui-button-flat" />
+                <br/>
+                <p:commandButton type="button" value="GRAFIK" icon="pi pi-fw pi-calendar-clock" styleClass="ui-button-secondary ui-button-flat" />
+                <br/>
+                <p:commandButton type="button" value="KONTAKT" icon="pi pi-fw pi-phone" styleClass="ui-button-secondary ui-button-flat" />
+            </p:sidebar>
+            <p:commandButton icon="pi pi-fw pi-list" type="button" onclick="PF('sidebar1').show()" styleClass="mr-2 ui-button-secondary" />
+        </ui:define>
+    </ui:composition>
+</html>
