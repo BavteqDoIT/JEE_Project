@@ -1,7 +1,7 @@
 package com.javaproj.pilatesproject.user;
 
-import com.javaproj.pilatesproject.dao.UsersDAO;
-import com.javaproj.pilatesproject.entities.Users;
+import com.javaproj.pilatesproject.dao.UserDAO;
+import com.javaproj.pilatesproject.entities.User;
 import jakarta.ejb.EJB;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.context.ExternalContext;
@@ -24,9 +24,9 @@ import java.util.List;
 public class UserListBB {
     private static final String PAGE_USER_EDIT = "userEdit?faces-redirect=true";
     private String surname;
-    private List<Users> userList;
-    private Users newUser = new Users();
-    private Users selectedUser;  // Dodajemy pole dla edytowanego użytkownika
+    private List<User> userList;
+    private User newUser = new User();
+    private User selectedUser;  // Dodajemy pole dla edytowanego użytkownika
 
     @Inject
     ExternalContext extcontext;
@@ -35,40 +35,40 @@ public class UserListBB {
     Flash flash;
 
     @EJB
-    UsersDAO usersDAO;
+    UserDAO userDAO;
 
-    public Users getNewUser() {
+    public User getNewUser() {
         return newUser;
     }
 
-    public void setNewUser(Users newUser) {
+    public void setNewUser(User newUser) {
         this.newUser = newUser;
     }
 
-    public Users getSelectedUser() {
+    public User getSelectedUser() {
         return selectedUser;
     }
 
-    public void setSelectedUser(Users selectedUser) {
+    public void setSelectedUser(User selectedUser) {
         this.selectedUser = selectedUser;
     }
 
-    public List<Users> getFullList() {
+    public List<User> getFullList() {
         if (userList == null) {
-            userList = usersDAO.findAll();
+            userList = userDAO.findAll();
         }
         return userList;
     }
 
     public void deleteUser(Long id) {
-        usersDAO.delete(id);
-        userList = usersDAO.findAll();
+        userDAO.delete(id);
+        userList = userDAO.findAll();
         flash.put("message", "User successfully deleted.");
     }
 
     public String saveNewUser() {
         System.out.println("saveNewUser method called");
-        usersDAO.create(newUser);
+        userDAO.create(newUser);
         flash.put("message", "User successfully created.");
         return "userList?faces-redirect=true";
     }
@@ -77,13 +77,13 @@ public class UserListBB {
     public String saveEditedUser() {
         System.out.println("saveEditedUser method called");
         if (selectedUser != null) {
-            usersDAO.update(selectedUser);  // Zaktualizowanie użytkownika w bazie
+            userDAO.update(selectedUser);  // Zaktualizowanie użytkownika w bazie
             flash.put("message", "User successfully updated.");
         }
         return "userList?faces-redirect=true";
     }
     
-    public String editUser(Users user){
+    public String editUser(User user){
 		//1. Pass object through session
 		//HttpSession session = (HttpSession) extcontext.getSession(true);
 		//session.setAttribute("person", person);

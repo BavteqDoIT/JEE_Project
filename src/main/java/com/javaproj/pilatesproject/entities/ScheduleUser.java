@@ -28,34 +28,42 @@ import java.util.Date;
 @Table(name = "schedule_user")
 @NamedQueries({
     @NamedQuery(name = "ScheduleUser.findAll", query = "SELECT s FROM ScheduleUser s"),
+    @NamedQuery(name = "ScheduleUser.findById", query = "SELECT s FROM ScheduleUser s WHERE s.id = :id"),
     @NamedQuery(name = "ScheduleUser.findByCreatedAt", query = "SELECT s FROM ScheduleUser s WHERE s.createdAt = :createdAt"),
-    @NamedQuery(name = "ScheduleUser.findByUpdatedAt", query = "SELECT s FROM ScheduleUser s WHERE s.updatedAt = :updatedAt"),
-    @NamedQuery(name = "ScheduleUser.findById", query = "SELECT s FROM ScheduleUser s WHERE s.id = :id")})
+    @NamedQuery(name = "ScheduleUser.findByUpdatedAt", query = "SELECT s FROM ScheduleUser s WHERE s.updatedAt = :updatedAt")})
 public class ScheduleUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "id")
+    private Integer id;
     @Column(name = "created_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
     @Column(name = "updated_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "id")
-    private Integer id;
     @JoinColumn(name = "schedule_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Schedules scheduleId;
+    private Schedule scheduleId;
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @ManyToOne(optional = false)
-    private Users userId;
+    private User userId;
 
     public ScheduleUser() {
     }
 
     public ScheduleUser(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -75,27 +83,19 @@ public class ScheduleUser implements Serializable {
         this.updatedAt = updatedAt;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Schedules getScheduleId() {
+    public Schedule getScheduleId() {
         return scheduleId;
     }
 
-    public void setScheduleId(Schedules scheduleId) {
+    public void setScheduleId(Schedule scheduleId) {
         this.scheduleId = scheduleId;
     }
 
-    public Users getUserId() {
+    public User getUserId() {
         return userId;
     }
 
-    public void setUserId(Users userId) {
+    public void setUserId(User userId) {
         this.userId = userId;
     }
 

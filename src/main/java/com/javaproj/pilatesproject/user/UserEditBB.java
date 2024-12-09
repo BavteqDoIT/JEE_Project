@@ -1,7 +1,7 @@
 package com.javaproj.pilatesproject.user;
 
-import com.javaproj.pilatesproject.dao.UsersDAO;
-import com.javaproj.pilatesproject.entities.Users;
+import com.javaproj.pilatesproject.dao.UserDAO;
+import com.javaproj.pilatesproject.entities.User;
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -22,11 +22,11 @@ public class UserEditBB implements Serializable {
 	private static final String PAGE_USER_LIST = "userList?faces-redirect=true";
 	private static final String PAGE_STAY_AT_THE_SAME = null;
 
-	private Users user = new Users();
-	private Users loaded = null;
+	private User user = new User();
+	private User loaded = null;
 
 	@EJB
-	UsersDAO userDAO;
+	UserDAO userDAO;
 
 	@Inject
 	FacesContext context;
@@ -34,7 +34,7 @@ public class UserEditBB implements Serializable {
 	@Inject
 	Flash flash;
 
-	public Users getUser() {
+	public User getUser() {
 		return user;
 	}
 
@@ -44,7 +44,7 @@ public class UserEditBB implements Serializable {
 		// loaded = (Person) session.getAttribute("person");
 
 		// 2. load person passed through flash
-		loaded = (Users) flash.get("user");
+		loaded = (User) flash.get("user");
 
 		// cleaning: attribute received => delete it from session
 		if (loaded != null) {

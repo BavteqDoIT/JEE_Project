@@ -1,10 +1,10 @@
-com\javaproj\pilatesproject\entities\Schedules.class
+com\javaproj\pilatesproject\entities\Class.class
 com\javaproj\pilatesproject\entities\ScheduleUser.class
-com\javaproj\pilatesproject\dao\UsersDAO.class
+com\javaproj\pilatesproject\entities\Schedule.class
+com\javaproj\pilatesproject\entities\User.class
 com\javaproj\pilatesproject\resources\JakartaEE11Resource.class
+com\javaproj\pilatesproject\entities\Pass.class
 com\javaproj\pilatesproject\user\UserListBB.class
-com\javaproj\pilatesproject\entities\Classes.class
+com\javaproj\pilatesproject\dao\UserDAO.class
 com\javaproj\pilatesproject\user\UserEditBB.class
-com\javaproj\pilatesproject\entities\Passes.class
 com\javaproj\pilatesproject\JakartaRestConfiguration.class
-com\javaproj\pilatesproject\entities\Users.class
