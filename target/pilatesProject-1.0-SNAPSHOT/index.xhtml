@@ -7,25 +7,124 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
     <ui:composition template="/templates/page-template.xhtml">
         <ui:define name="pageContent">
-            <h1>Kameralne Studio Pilates</h1>
-            <p:commandButton value="User List" action="userList" styleClass="ui-button-secondary"/>
-            <br/>
-            <br/>
-            <p:sidebar widgetVar="sidebar1">
-                <h2>Menu</h2>
-                <p:commandButton type="button" value="O NAS" icon="pi pi-fw pi-info-circle" styleClass="ui-button-secondary ui-button-flat" />
+            <div style=" font-family: 'Trebuchet MS', sans-serif;">
+    <!--            <h1>Kameralne Studio Pilates</h1>-->
+                <p:commandButton value="User List" action="userList"/>
                 <br/>
-                <p:commandButton type="button" value="STUDIO" icon="pi pi-fw pi-building" styleClass="ui-button-secondary ui-button-flat" />
                 <br/>
-                <p:commandButton type="button" value="PILATES" icon="pi pi-fw pi-heart-fill" styleClass="ui-button-secondary ui-button-flat" />
+                <p:commandButton value="Pass List" action="passList"/>
                 <br/>
-                <p:commandButton type="button" value="OFERTA / CENNIK" icon="pi pi-fw pi-shopping-cart" styleClass="ui-button-secondary ui-button-flat" />
                 <br/>
-                <p:commandButton type="button" value="GRAFIK" icon="pi pi-fw pi-calendar-clock" styleClass="ui-button-secondary ui-button-flat" />
-                <br/>
-                <p:commandButton type="button" value="KONTAKT" icon="pi pi-fw pi-phone" styleClass="ui-button-secondary ui-button-flat" />
-            </p:sidebar>
-            <p:commandButton icon="pi pi-fw pi-list" type="button" onclick="PF('sidebar1').show()" styleClass="mr-2 ui-button-secondary" />
+    <!--            <p:sidebar widgetVar="sidebar1">
+                    <h2>Menu</h2>
+                    <p:commandButton type="button" value="O NAS" icon="pi pi-fw pi-info-circle" styleClass="ui-button-secondary ui-button-flat" />
+                    <br/>
+                    <p:commandButton type="button" value="STUDIO" icon="pi pi-fw pi-building" styleClass="ui-button-secondary ui-button-flat" />
+                    <br/>
+                    <p:commandButton type="button" value="PILATES" icon="pi pi-fw pi-heart-fill" styleClass="ui-button-secondary ui-button-flat" />
+                    <br/>
+                    <p:commandButton type="button" value="OFERTA / CENNIK" icon="pi pi-fw pi-shopping-cart" styleClass="ui-button-secondary ui-button-flat" />
+                    <br/>
+                    <p:commandButton type="button" value="GRAFIK" icon="pi pi-fw pi-calendar-clock" styleClass="ui-button-secondary ui-button-flat" />
+                    <br/>
+                    <p:commandButton type="button" value="KONTAKT" icon="pi pi-fw pi-phone" styleClass="ui-button-secondary ui-button-flat" />
+                </p:sidebar>
+                <p:commandButton icon="pi pi-fw pi-list" type="button" onclick="PF('sidebar1').show()" styleClass="mr-2 ui-button-secondary" />-->
+                <div style="background-image: url('#{resource['template:img/welcome-first.jpeg']}'); background-size: cover; background-position: center; height: 700px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+                    <span style="font-size: 4em; color: white; font-weight: bold; margin-bottom: 20px;">Cześć!</span>
+                    <span style="font-size: 4em; color: white; margin-bottom: 30px;">Fajnie, że tu z nami jesteś!</span>
+                    <p:commandButton value="ZAPISZ SIĘ" styleClass="ui-button-raised ui-button-secondary ui-button-flat" 
+                                     style="background-color: #007bff; color: white; border: none; font-size: 24px; padding: 20px 40px;"/>
+                </div>
+                <div style="margin: 5em 20em 5em 20em;">
+                    <div style="margin:0em 0 1em 0 ; color: gray">
+                        <div style="font-size: 2em; font-weight: bold; color:black">
+                            Kameralne STUDIO Pilates
+                        </div>
+                        Powstało z naszej pasji do pracy nad ludzkim ciałem i chęci dzielenia się prozdrowotynm charakterem metody Pilates.
+                        Pracująca tu kadra to osoby z dużym doświadczeniem w praktyce i nauczaniu tej metody, nieustająco podnoszące swoje
+                        kwalifikacje poprzez szkolenia u najlepszych master trenerów w Polsce.
+                    </div>
+                    <p:commandButton value="CZYTAJ WIĘCEJ" styleClass="ui-button-outlined ui-button-secondary" 
+                                     style="color: black; border: 3px solid black;padding: 0 2em 0 2em;"/>
+                </div>
+
+                <div style="margin: 5em 20em 5em 20em;">
+                    <div style="margin:0em 0 1em 0 ; color: gray">
+                        <div style="font-size: 2em; font-weight: bold; color:black">
+                            Na czym ćwiczymy?
+                        </div>
+                        Miejsce, do którego Cię zapraszamy to klimatyczna przestrzeń oferująca ćwiczenia w mini grupach oraz treningi 
+                        personalne. W obu przypadkach łączymy klasyczną metodę pracy na matach z dużym i małym sprzętem najwyższej 
+                        jakości, który został zaprojektowanym przez samego twórcę tej metody  – Josepha Pilatesa.
+                    </div>
+                    <p:commandButton value="CZYTAJ WIĘCEJ" styleClass="ui-button-outlined ui-button-secondary" 
+                                     style="color: black; border: 3px solid black;padding: 0 2em 0 2em;"/>
+                </div>
+
+                <div style="margin: 5em 20em 5em 20em;">
+                    <div style="margin:0em 0 1em 0 ; color: gray">
+                        <div style="font-size: 2em; font-weight: bold; color:black">
+                            Co to jest pilates?
+                        </div>
+                        Pilates, nazwany oryginalnie Kontrologią lub „sztuką kontrolowania ciała i umysłu” to metoda treningowa 
+                        stworzona na początku XX. wieku przez Niemca Josepha Pilatesa.<br/><br/>
+
+                        Jest ona pionierskim systemem kilkuset precyzyjnie wykonywanych ćwiczeń na specjalnie 
+                        zaprojektowanych sprzętach oraz na macie. Ideą jest kontrola mięśni brzucha  
+                        ( budowanie siły środka, tzw. Core)  i poprawne oddychanie. 
+                        Ilość powtórzeń nie ma tu znaczenia – bo koncentracja, 
+                        panowanie nad sobą, płynne ruchy i dokładność są podstawowymi zasadami tej techniki. 
+                        Przestrzeganie ich zapewni ci bezpieczeństwo i szybko przyniesie upragnione efekty.
+                    </div>
+                    <p:commandButton value="CZYTAJ WIĘCEJ" styleClass="ui-button-outlined ui-button-secondary" 
+                                     style="color: black; border: 3px solid black;padding: 0 2em 0 2em;"/>
+                </div>
+                <div style="background-image: url('#{resource['template:img/welcome-second.jpg']}'); background-size: cover; background-position: center; height: 700px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+                    <span style="font-size: 4em; color: white; font-weight: bold; margin-bottom: 20px;">Przyjdź przekonaj się sam, że pilates jest dla wszystkich!</span>
+                    <span style="font-size: 4em; color: white; margin-bottom: 30px;">nigdy nie jest za późno a walkę o sprawne ciało</span>
+                    <p:commandButton value="ZAPISZ SIĘ NA ZAJĘCIA" styleClass="ui-button-raised ui-button-secondary ui-button-flat" 
+                                     style="background-color: #007bff; color: white; border: none; font-size: 24px; padding: 20px 40px;"/>
+                </div>
+                <div style="margin: 5em 20em 0em 20em;">
+                    <div style="margin:0em 0 1em 0 ; color: gray">
+                        <div style="font-size: 2.5em; font-weight: bold; color:black">
+                            OFERTA
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin: 0.5em 20em 2em 20em;">
+                    <div style="margin:0em 0 1em 0 ; color: gray">
+                        <div style="font-size: 1.5em; font-weight: bold; color:black">
+                            TRENING PERSONALNY
+                        </div>
+                        Ten typ treningu pozwoli Ci szybciej osiągnąć cele treningowe, bo możemy poświęcić Ci 100%  
+                        naszej uwagi i dostosować ćwiczenia pod Twoje potrzeby.
+                    </div>
+                </div>
+
+                <div style="margin: 1em 20em 2em 20em;">
+                    <div style="margin:0em 0 1em 0 ; color: gray">
+                        <div style="font-size: 1.5em; font-weight: bold; color:black">
+                            TRENING REFORMER TRIO
+                        </div>
+                        Trio (sesje trzyosobowe ) są świetnym sposobem na zawarcie nowych znajomości jak również dla osób 
+                        lubiących spędzać czas z bliską osobą – koleżanką, siostrą lub partnerem.
+                    </div>
+                </div>
+                <div style="margin: 1em 20em 5em 20em;">
+                    <div style="margin:0em 0 1em 0 ; color: gray">
+                        <div style="font-size: 1.5em; font-weight: bold; color:black">
+                            SPINE CORRECTOR GRUPA
+                        </div>
+                        Cztery osoby i instruktor na spine correctorach to wspaniałe treningi wydłużające kręgosłup i 
+                        otwierające klatkę piersiową…
+                    </div>
+                    <p:commandButton value="CZYTAJ WIĘCEJ" styleClass="ui-button-outlined ui-button-secondary" 
+                                     style="color: black; border: 3px solid black;padding: 0 2em 0 2em;"/>
+                </div>
+            </div>
         </ui:define>
     </ui:composition>
 </html>
