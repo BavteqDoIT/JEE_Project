@@ -10,4 +10,7 @@ com\javaproj\pilatesproject\user\UserEditBB.class
 com\javaproj\pilatesproject\dao\PassDAO.class
 com\javaproj\pilatesproject\resources\JakartaEE11Resource.class
 com\javaproj\pilatesproject\entities\Pass.class
+com\javaproj\pilatesproject\classes\ClassListBB.class
+com\javaproj\pilatesproject\classes\ClassEditBB.class
+com\javaproj\pilatesproject\dao\ClassDAO.class
 com\javaproj\pilatesproject\JakartaRestConfiguration.class
