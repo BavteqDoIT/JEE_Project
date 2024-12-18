@@ -10,7 +10,7 @@
                 <f:viewAction action="#{passEditBB.onLoad()}" />
             </f:metadata>
 
-            <h:body style="background-color: #eee; margin: 0.5em;">
+            <h:body class="edit-body-style">
 
                 <p:panel toggleable="true" header="Edycja rekordu">
 
@@ -43,7 +43,7 @@
                         <p:messages id="msgs" />
 
                         <p:commandButton value="Zapisz" action="#{passEditBB.saveData()}"
-                                         style="margin-right: 1em;" update="@form" />
+                                         styleClass="edit-save-button" update="@form" />
 
                         <p:button value="Anuluj" outcome="passList" />
                     </h:form>

@@ -13,15 +13,15 @@
 
         <h:body>
             <h:form id="createUserForm">
-                <p:panel header="Dodaj użytkownika" style="width: 400px; margin: auto;">
+                <p:panel header="Dodaj użytkownika" styleClass="add-button">
                     <p:outputLabel for="name" value="Imię:" />
-                    <p:inputText id="name" value="#{userListBB.newUser.name}" required="true" requiredMessage="Imię jest wymagane" style="width: 100%;" />
+                    <p:inputText id="name" value="#{userListBB.newUser.name}" required="true" requiredMessage="Imię jest wymagane" styleClass="width-100"/>
 
                     <p:outputLabel for="surname" value="Nazwisko:" />
-                    <p:inputText id="surname" value="#{userListBB.newUser.surname}" required="true" requiredMessage="Nazwisko jest wymagane" style="width: 100%;" />
+                    <p:inputText id="surname" value="#{userListBB.newUser.surname}" required="true" requiredMessage="Nazwisko jest wymagane" styleClass="width-100"/>
 
                     <p:outputLabel for="email" value="Email:" />
-                    <p:inputText id="email" value="#{userListBB.newUser.email}" required="true" requiredMessage="Email jest wymagany" validatorMessage="Niepoprawny format e-maila" style="width: 100%;" />
+                    <p:inputText id="email" value="#{userListBB.newUser.email}" required="true" requiredMessage="Email jest wymagany" validatorMessage="Niepoprawny format e-maila" styleClass="width-100"/>
 
                     <p:commandButton value="Dodaj" action="#{userListBB.saveNewUser}" update="createUserForm" icon="pi pi-save" styleClass="ui-button-success" />
                 </p:panel>

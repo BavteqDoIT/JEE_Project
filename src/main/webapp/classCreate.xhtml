@@ -13,15 +13,15 @@
 
         <h:body>
             <h:form id="createClassForm">
-                <p:panel header="Dodaj zajęcia" style="width: 400px; margin: auto;">
+                <p:panel header="Dodaj zajęcia" styleClass="add-button">
                     <p:outputLabel for="name" value="Nazwa:" />
-                    <p:inputText id="name" value="#{classListBB.newClass.name}" required="true" requiredMessage="Nazwa jest wymagana" style="width: 100%;" />
+                    <p:inputText id="name" value="#{classListBB.newClass.name}" required="true" requiredMessage="Nazwa jest wymagana" styleClass="width-100"/>
 
                     <p:outputLabel for="description" value="Opis:" />
-                    <p:inputText id="description" value="#{classListBB.newClass.description}" required="true" requiredMessage="Opis jest wymagany" style="width: 100%;" />
+                    <p:inputText id="description" value="#{classListBB.newClass.description}" required="true" requiredMessage="Opis jest wymagany" styleClass="width-100"/>
 
                     <p:outputLabel for="slots" value="Miejsca:" />
-                    <p:inputText id="slots" value="#{classListBB.newClass.slots}" required="true" requiredMessage="Ilość jest wymagana" validatorMessage="Niepoprawna ilość miejsc" style="width: 100%;" />
+                    <p:inputText id="slots" value="#{classListBB.newClass.slots}" required="true" requiredMessage="Ilość jest wymagana" validatorMessage="Niepoprawna ilość miejsc" styleClass="width-100"/>
 
                     <p:commandButton value="Dodaj" action="#{classListBB.saveNewClass}" update="createClassForm" icon="pi pi-save" styleClass="ui-button-success" />
                 </p:panel>

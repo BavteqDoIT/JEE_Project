@@ -13,15 +13,15 @@
 
         <h:body>
             <h:form id="createPassForm">
-                <p:panel header="Dodaj karnet" style="width: 400px; margin: auto;">
+                <p:panel header="Dodaj karnet" styleClass="add-button">
                     <p:outputLabel for="name" value="Nazwa:" />
-                    <p:inputText id="name" value="#{passListBB.newPass.name}" required="true" requiredMessage="Nazwa jest wymagana" style="width: 100%;" />
+                    <p:inputText id="name" value="#{passListBB.newPass.name}" required="true" requiredMessage="Nazwa jest wymagana" styleClass="width-100"/>
 
                     <p:outputLabel for="description" value="Opis:" />
-                    <p:inputText id="description" value="#{passListBB.newPass.description}" required="true" requiredMessage="Opis jest wymagany" style="width: 100%;" />
+                    <p:inputText id="description" value="#{passListBB.newPass.description}" required="true" requiredMessage="Opis jest wymagany" styleClass="width-100"/>
 
                     <p:outputLabel for="price" value="Cena:" />
-                    <p:inputText id="price" value="#{passListBB.newPass.price}" required="true" requiredMessage="Cena jest wymagana" validatorMessage="Niepoprawny format e-maila" style="width: 100%;" />
+                    <p:inputText id="price" value="#{passListBB.newPass.price}" required="true" requiredMessage="Cena jest wymagana" validatorMessage="Niepoprawny format e-maila" styleClass="width-100"/>
 
                     <p:commandButton value="Dodaj" action="#{passListBB.saveNewPass}" update="createPassForm" icon="pi pi-save" styleClass="ui-button-success" />
                 </p:panel>

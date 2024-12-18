@@ -21,3 +21,156 @@ body{
 .fontFamily {
     font-family: 'Trebuchet MS', sans-serif;
 }
+
+.header {
+    margin: 1em 0 2em 0;  
+    border-bottom: 3px solid lightgray; 
+    display: flex; 
+    justify-content: flex-end; 
+    align-items: center;
+}
+
+.header-icons{
+    margin:0 1em 0 1em;
+}
+
+.header-icons-styles{
+    font-size: 1em; 
+    color: black;
+}
+
+.header-menu{
+    display: flex;
+    border-radius: 0.5em;
+    padding: 0.5em;
+    box-sizing: border-box;
+}
+
+.header-logo{
+    flex: 1 1 33%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.no-text-decoration{
+    text-decoration: none;
+}
+
+.header-logo-size{
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    display: block;
+}
+
+.header-submenu{
+    flex: 1 1 66%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.add-button{
+    background-color: transparent !important;
+    width: 400px !important;
+    margin: auto !important;
+}
+
+.width-100{
+    width: 100%;
+}
+
+.edit-body-style{
+    background-color: #eee;
+    margin: 0.5em;
+}
+
+.edit-save-button{
+    margin-right: 1em;
+}
+
+.banner-text-top{
+    font-size: 4em;
+    color: white;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.banner-text-bottom{
+    font-size: 4em;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.banner-image{
+    background-size: cover;
+    background-position: center;
+    height: 700px; display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.banner-button{
+    background-color: transparent !important;
+    background-color: #007bff !important;
+    color: white !important;
+    border: none !important;
+    font-size: 24px !important; 
+    padding: 20px 40px !important;
+}
+
+.admin-menu-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    margin-bottom: 0.5em
+}
+
+.index-menu-item{
+    margin: 5em 20em 5em 20em;
+}
+
+.index-menu-item-description{
+    margin:0em 0 1em 0 ;
+    color: gray
+}
+
+.index-menu-item-title{
+    font-size: 2em;
+    font-weight: bold;
+    color:black
+}
+
+.index-menu-item-button{
+    background-color: transparent !important;
+    color: black !important; 
+    border: 3px solid black !important;
+    padding: 0 2em 0 2em !important;
+}
+
+.index-menu-item-subtitle{
+    font-size: 2em;
+    font-weight: bold;
+    color:black
+}
+
+.index-menu-item-title-ofert{
+    font-size: 2.5em;
+    font-weight: bold;
+    color:black
+}
+
+.index-menu-item-ofert{
+    margin: 1em 20em 2em 20em;
+}
+
+.index-menu-item-subtitle-ofert{
+    font-size: 1.5em;
+    font-weight: bold;
+    color:black
+}
