@@ -15,5 +15,9 @@ body{
 
 .ui-panel {
     border: none !important;
-    box-shadow: none !important; /* Jeśli chcesz też usunąć cień */
+    box-shadow: none !important;
+}
+
+.fontFamily {
+    font-family: 'Trebuchet MS', sans-serif;
 }

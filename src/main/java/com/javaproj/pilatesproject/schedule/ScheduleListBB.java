@@ -1,7 +1,9 @@
 package com.javaproj.pilatesproject.schedule;
 
+import com.javaproj.pilatesproject.dao.ClassDAO;
 import com.javaproj.pilatesproject.dao.ScheduleDAO;
 import com.javaproj.pilatesproject.entities.Schedule;
+import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.context.ExternalContext;
@@ -24,8 +26,8 @@ import java.util.List;
 public class ScheduleListBB {
     private static final String PAGE_SCHEDULE_EDIT = "scheduleEdit?faces-redirect=true";
     private List<Schedule> scheduleList;
-    private Schedule newSchedule = new Schedule();
-    private Schedule selectedSchedule;  // Dodajemy pole dla edytowanego karnetu
+    private Schedule newSchedule;
+    private Schedule selectedSchedule;
 
     @Inject
     ExternalContext extcontext;
@@ -36,20 +38,21 @@ public class ScheduleListBB {
     @EJB
     ScheduleDAO scheduleDAO;
 
+    @EJB
+    ClassDAO classDAO;
+
+    @PostConstruct
+    public void init() {
+        newSchedule = new Schedule();
+        newSchedule.setClassId(new com.javaproj.pilatesproject.entities.Class());// Inicjalizacja obiektu Class
+    }
+
     public Schedule getNewSchedule() {
         return newSchedule;
     }
 
     public void setNewSchedule(Schedule newSchedule) {
         this.newSchedule = newSchedule;
-    }
-
-    public Schedule getSelectedSchedule() {
-        return selectedSchedule;
-    }
-
-    public void setSelectedSchedule(Schedule selectedSchedule) {
-        this.selectedSchedule = selectedSchedule;
     }
 
     public List<Schedule> getFullList() {
@@ -61,37 +64,36 @@ public class ScheduleListBB {
 
     public void deleteSchedule(Long id) {
         scheduleDAO.delete(id);
-        scheduleList = scheduleDAO.findAll();
+        refreshScheduleList();
         flash.put("message", "Schedule successfully deleted.");
     }
 
     public String saveNewSchedule() {
         try {
-            // Logowanie danych przed zapisaniem
-            System.out.println("Class ID: " + newSchedule.getClassId());
-            System.out.println("Start Time: " + newSchedule.getStartTime());
-            System.out.println("End Time: " + newSchedule.getEndTime());
-            System.out.println("Day: " + newSchedule.getDay());
+            if (newSchedule.getClassId() == null || newSchedule.getClassId().getId() == null) {
+                flash.put("error", "Class ID is required.");
+                return null;
+            }
 
-            // Tworzenie nowego grafiku
+            com.javaproj.pilatesproject.entities.Class existingClass = classDAO.findById(newSchedule.getClassId().getId());
+            if (existingClass == null) {
+                flash.put("error", "Class with given ID does not exist.");
+                return null;
+            }
+
+            newSchedule.setClassId(existingClass);
             scheduleDAO.create(newSchedule);
             flash.put("message", "Schedule successfully created.");
-            return "scheduleList?faces-redirect=true"; // Upewnij się, że przekierowanie działa
+            return "scheduleList?faces-redirect=true";
         } catch (Exception e) {
             e.printStackTrace();
             flash.put("error", "Error saving schedule.");
-            return null; // Zwracamy null, aby zostać na tej samej stronie w przypadku błędu
+            return null;
         }
     }
 
-    // Metoda edytująca karnet
-    public String saveEditedSchedule() {
-        System.out.println("saveEditedSchedule method called");
-        if (selectedSchedule != null) {
-            scheduleDAO.update(selectedSchedule);  // Zaktualizowanie karnetu w bazie
-            flash.put("message", "Schedule successfully updated.");
-        }
-        return "scheduleList?faces-redirect=true";
+    private void refreshScheduleList() {
+        scheduleList = scheduleDAO.findAll();
     }
 
     public String editSchedule(Schedule schedule) {

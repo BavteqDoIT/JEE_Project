@@ -18,19 +18,19 @@
                     <p:messages id="messages" showDetail="true" />
 
                     <p:outputLabel for="classId" value="ID Zajęć:" />
-                    <p:inputText id="classId" value="#{scheduleListBB.newSchedule.classId}" required="true" requiredMessage="ID zajęć jest wymagane" style="width: 100%;" />
+                    <p:inputText id="classId" value="#{scheduleListBB.newSchedule.classId.id}" required="false" requiredMessage="ID zajęć jest wymagane" style="width: 100%;" />
                     <p:message for="classId" />
 
                     <p:outputLabel for="startTime" value="Godzina rozpoczęcia:" />
-                    <p:inputText id="startTime" value="#{scheduleListBB.newSchedule.startTime}" required="true" requiredMessage="Godzina startu jest wymagana" style="width: 100%;" />
+                    <p:inputText id="startTime" value="#{scheduleListBB.newSchedule.startTime}" required="false" requiredMessage="Godzina startu jest wymagana" style="width: 100%;" />
                     <p:message for="startTime" />
 
                     <p:outputLabel for="endTime" value="Godzina zakończenia" />
-                    <p:inputText id="endTime" value="#{scheduleListBB.newSchedule.endTime}" required="true" requiredMessage="Godzina zakończenia jest wymagana" style="width: 100%;" />
+                    <p:inputText id="endTime" value="#{scheduleListBB.newSchedule.endTime}" required="false" requiredMessage="Godzina zakończenia jest wymagana" style="width: 100%;" />
                     <p:message for="endTime" />
 
                     <p:outputLabel for="day" value="Dzień:" />
-                    <p:inputText id="day" value="#{scheduleListBB.newSchedule.day}" required="true" requiredMessage="Dzień jest wymagany" validatorMessage="Zła nazwa dnia" style="width: 100%;" />
+                    <p:inputText id="day" value="#{scheduleListBB.newSchedule.day}" required="flase" requiredMessage="Dzień jest wymagany" validatorMessage="Zła nazwa dnia" style="width: 100%;" />
                     <p:message for="day" />
 
                     <!-- Dodajemy atrybut update, aby komunikaty były aktualizowane po kliknięciu -->

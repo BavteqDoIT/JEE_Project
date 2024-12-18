@@ -17,7 +17,6 @@ import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
-import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.Date;
@@ -50,21 +49,17 @@ public class Schedule implements Serializable {
     @Column(name = "updated_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
+    @Size(max = 255)
     @Column(name = "start_time")
     private String startTime;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 255)
+    @Size(max = 255)
     @Column(name = "end_time")
     private String endTime;
     @Size(max = 12)
     @Column(name = "day")
     private String day;
     @JoinColumn(name = "class_id", referencedColumnName = "id")
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Class classId;
 
     public Schedule() {
@@ -72,12 +67,6 @@ public class Schedule implements Serializable {
 
     public Schedule(Long id) {
         this.id = id;
-    }
-
-    public Schedule(Long id, String startTime, String endTime) {
-        this.id = id;
-        this.startTime = startTime;
-        this.endTime = endTime;
     }
 
     public Long getId() {
