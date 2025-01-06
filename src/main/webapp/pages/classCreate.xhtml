@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition template="/templates/page-template.xhtml">
+    <ui:define name="pageContent">
+        <h:head>
+            <title>Dodaj nowe zajęcia</title>
+        </h:head>
+
+        <h:body>
+            <h:form id="createClassForm">
+                <p:panel header="Dodaj zajęcia" styleClass="add-button">
+                    <p:outputLabel for="name" value="Nazwa:" />
+                    <p:inputText id="name" value="#{classListBB.newClass.name}" required="true" requiredMessage="Nazwa jest wymagana" styleClass="width-100"/>
+
+                    <p:outputLabel for="description" value="Opis:" />
+                    <p:inputText id="description" value="#{classListBB.newClass.description}" required="true" requiredMessage="Opis jest wymagany" styleClass="width-100"/>
+
+                    <p:outputLabel for="slots" value="Miejsca:" />
+                    <p:inputText id="slots" value="#{classListBB.newClass.slots}" required="true" requiredMessage="Ilość jest wymagana" validatorMessage="Niepoprawna ilość miejsc" styleClass="width-100"/>
+
+                    <p:commandButton value="Dodaj" action="#{classListBB.saveNewClass}" update="createClassForm" icon="pi pi-save" styleClass="ui-button-success" />
+                </p:panel>
+            </h:form>
+        </h:body>
+    </ui:define>
+</ui:composition>
+</html>

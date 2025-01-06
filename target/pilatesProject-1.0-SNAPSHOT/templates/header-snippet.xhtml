@@ -17,7 +17,7 @@
             <div class="header-menu">
 
                 <div class="header-logo">
-                    <h:outputLink value="#{facesContext.externalContext.requestContextPath}/" class="no-text-decoration">
+                    <h:outputLink value="#{facesContext.externalContext.requestContextPath}/public/index.xhtml" class="no-text-decoration">
                         <img src="#{resource['template:img/logo-1.svg']}" class="header-logo-size"/>
                     </h:outputLink>
                 </div>
@@ -33,7 +33,7 @@
                             <p:commandButton type="button" value="KONTAKT" icon="pi pi-fw pi-phone" styleClass="ui-button-flat" />
                         </f:facet>
                         <f:facet name="end">
-                            <p:button value="Logout" icon="pi pi-fw pi-sign-out"/>
+                            <p:commandButton action="#{loginBB.doLogout()}" value="Logout" icon="pi pi-fw pi-sign-out"/>
                         </f:facet>
                     </p:menubar>
                 </div>

@@ -44,4 +44,23 @@ public class UserDAO {
             em.remove(user);
         }
     }
+    
+    public User getUserFromDatabase(String email, String password) {
+        try {
+            return em.createQuery(
+                    "SELECT u FROM User u WHERE u.email = :email AND u.password = :password", User.class)
+                .setParameter("email", email)
+                .setParameter("password", password)
+                .getSingleResult();
+        } catch (Exception e) {
+            // If user not found, return null
+            return null;
+        }
+    }
+
+    // Retrieve roles of a user from the database
+    public String getUserRoleFromDatabase(User user) {
+        // Zakładając, że rola jest przechowywana w polu "role" w klasie User
+        return user.getRole();
+    }
 }
