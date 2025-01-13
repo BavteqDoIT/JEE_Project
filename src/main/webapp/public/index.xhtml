@@ -9,11 +9,16 @@
         <ui:define name="pageContent">
             <div class="fontFamily">
                 <div class="admin-menu-container">
-                    <p:commandButton value="User List" action="/pages/userList.xhtml"/>
-                    <p:commandButton value="Pass List" action="/pages/passList.xhtml"/>
-                    <p:commandButton value="Class List" action="/pages/classList.xhtml"/>
-                    <p:commandButton value="Schedule" action="/pages/scheduleList.xhtml"/>
-                    <p:commandButton value="Login" action="/public/login.xhtml"/>
+                    <p:commandButton value="Panel użytkowników" action="/pages/userList.xhtml"
+                                     rendered="#{remoteClient.details.role == 'admin'}"/>
+                    <p:commandButton value="Panel karnetów" action="/pages/passList.xhtml"
+                                     rendered="#{remoteClient.details.role == 'admin'}"/>
+                    <p:commandButton value="Panel zajęć" action="/pages/classList.xhtml"
+                                     rendered="#{remoteClient.details.role == 'admin'}"/>
+                    <p:commandButton value="Panel grafiku" action="/pages/scheduleList.xhtml"
+                                     rendered="#{remoteClient.details.role == 'admin'}"/>
+                    <p:commandButton type="button" value="Panel administratora" icon="pi pi-fw pi-desktop" 
+                                     rendered="#{remoteClient.details.role == 'admin'}" action="#"/>
                 </div>
                 <!--            <p:sidebar widgetVar="sidebar1">
                                 <h2>Menu</h2>
@@ -46,6 +51,7 @@
                         kwalifikacje poprzez szkolenia u najlepszych master trenerów w Polsce.
                     </div>
                     <p:commandButton value="CZYTAJ WIĘCEJ"  
+                                     action="/public/aboutUs.xhtml"
                                      styleClass="index-menu-item-button"/>
                 </div>
 

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition template="/templates/page-template.xhtml">
+    <ui:define name="pageContent">
+        <div class="fontFamily">
+            <h:body>
+                <div class="banner-about-us" style="background-image: url('#{resource['template:img/aboutUs-first.jpg']}'); ">
+                        <span class="banner-text-top">O NAS!🙂</span>
+                </div>
+                <div class="about-us-container">
+                    <div class="about-us-left">
+                        <img src="#{resource['template:img/aboutUs-second.jpg']}" alt="Opis zdjęcia" />
+                    </div>
+                    <div class="about-us-right">
+                        <p>
+                            <strong>Kameralne STUDIO Pilates</strong> powstało z naszej pasji do pracy nad ludzkim ciałem i chęci dzielenia się prozdrowotnym 
+                            charakterem metody Pilates. Pracująca tu kadra to osoby z dużym doświadczeniem w praktyce i nauczaniu tej metody,
+                            nieustająco podnoszące swoje kwalifikacje poprzez szkolenia u najlepszych master trenerów w Polsce.
+                        </p>
+                        <p>
+                            Biorąc pod uwagę cel z jakim do nas przyszedłeś, możliwości Twojego ciała, przebyte choroby czy urazy, dostosujemy 
+                            twój plan treningowy do twoich potrzeb.
+                        </p>
+                        <p>
+                            <strong>
+                                Przyjdź i przekonaj się sam, że pilates  jest dla wszystkich bez względu na wiek czy wcześniejszy styl życia.
+                                Pamiętaj, nigdy nie jest za późno na walkę o sprawne ciało i lepszy komfort dnia codziennego !
+                            </strong>
+                        </p>
+                        <p>
+                            Lokalizacja studia to Będzin ul. Modrzejowska 95.
+                            Wzdłuż całej ulicy znajdują się bezpłatne miejsca parkingowe
+                        </p>
+                        <p>
+                            Zapraszamy!
+                        </p>
+                    </div>
+                </div>
+            </h:body>
+        </div>
+    </ui:define>
+
+</ui:composition>
+</html>

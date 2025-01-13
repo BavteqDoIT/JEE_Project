@@ -25,15 +25,21 @@
                 <div class="header-submenu">
                     <p:menubar hideDelay="1000">
                         <f:facet name="start">
-                            <p:commandButton type="button" value="O NAS" icon="pi pi-fw pi-info-circle" styleClass="ui-button-flat" />
-                            <p:commandButton type="button" value="STUDIO" icon="pi pi-fw pi-building" styleClass="ui-button-flat" />
-                            <p:commandButton type="button" value="PILATES" icon="pi pi-fw pi-heart-fill" styleClass="ui-button-flat" />
-                            <p:commandButton type="button" value="OFERTA / CENNIK" icon="pi pi-fw pi-shopping-cart" styleClass="ui-button-flat" />
-                            <p:commandButton type="button" value="GRAFIK" icon="pi pi-fw pi-calendar-clock" styleClass="ui-button-flat" />
-                            <p:commandButton type="button" value="KONTAKT" icon="pi pi-fw pi-phone" styleClass="ui-button-flat" />
+                            <p:commandButton action="/public/aboutUs.xhtml" value="O NAS" icon="pi pi-fw pi-info-circle" styleClass="ui-button-flat" />
+                            <p:commandButton value="STUDIO" icon="pi pi-fw pi-building" styleClass="ui-button-flat" />
+                            <p:commandButton value="PILATES" icon="pi pi-fw pi-heart-fill" styleClass="ui-button-flat" />
+                            <p:commandButton value="OFERTA / CENNIK" icon="pi pi-fw pi-shopping-cart" styleClass="ui-button-flat" />
+                            <p:commandButton value="GRAFIK" icon="pi pi-fw pi-calendar-clock" styleClass="ui-button-flat" />
+                            <p:commandButton value="KONTAKT" icon="pi pi-fw pi-phone" styleClass="ui-button-flat" />
+                            
                         </f:facet>
                         <f:facet name="end">
-                            <p:commandButton action="#{loginBB.doLogout()}" value="Logout" icon="pi pi-fw pi-sign-out"/>
+                            <p:commandButton value="Login" icon="pi pi-fw pi-sign-in"
+                                            action="/public/login.xhtml"
+                                            rendered="#{remoteClient.details.email == null}"/>
+                            <p:commandButton value="Logout" icon="pi pi-fw pi-sign-out"
+                                action="#{loginBB.doLogout()}"
+                                rendered="#{remoteClient.details.email != null}" />
                         </f:facet>
                     </p:menubar>
                 </div>

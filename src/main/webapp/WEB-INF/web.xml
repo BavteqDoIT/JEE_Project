@@ -30,6 +30,7 @@
                 /jakarta.faces.resource : PUBLIC;
                 /public : PUBLIC, admin, user;
                 /public/index.xhtml : PUBLIC;
+                /public/aboutUs.xhtml : PUBLIC;
                 /pages : admin;
                 /pages/calc : user, manager, admin;
                 /pages/admin : admin;

@@ -22,6 +22,48 @@ body{
     font-family: 'Trebuchet MS', sans-serif;
 }
 
+.footer {
+    margin: 1em 0 2em 0;  
+    border-top: 3px solid lightgray;
+}
+
+.footer-items {
+    display: flex;
+    border-radius: 0.5em;
+    padding: 0.5em;
+    box-sizing: border-box;
+}
+
+.footer-left {
+    flex: 1 1 50%;
+    margin-bottom: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-right {
+    flex: 1 1 50%;
+    margin-bottom: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+
+
+.footer-right a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.footer-right .privacy-header {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
 .header {
     margin: 1em 0 2em 0;  
     border-bottom: 3px solid lightgray; 
@@ -174,3 +216,50 @@ body{
     font-weight: bold;
     color:black
 }
+
+.banner-about-us {
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.about-us-container {
+    display: flex;
+    width: 100%;
+    margin-top: 5em
+}
+
+.about-us-left, .about-us-right {
+    width: 50%;
+    padding: 0.5em;
+    box-sizing: border-box;
+}
+
+.about-us-right {
+    text-align: center; /* Wyśrodkowanie tekstu poziomo */
+    display: flex; /* Użycie Flexbox do wyśrodkowania w pionie */
+    flex-direction: column; /* Ustawienie elementów w kolumnie */
+    justify-content: center; /* Wyśrodkowanie w pionie */
+    align-items: center; /* Wyśrodkowanie w poziomie */
+    height: 100%; /* Zapewnia, że wyśrodkowanie działa w całym dostępnym obszarze */
+    font-size: 1.2em;
+}
+
+.about-us-left {
+    padding: 0.5em; /* Dodaje 0.5em luzu wokół zdjęcia */
+    box-sizing: border-box; /* Zapewnia, że padding jest uwzględniany w szerokości elementu */
+}
+
+.about-us-left img {
+    width: 100%; /* Ustala, że obraz będzie zajmował 100% dostępnej szerokości */
+    height: auto; /* Zapewnia proporcjonalne dostosowanie wysokości */
+    padding: 0.5em; /* Dodatkowy luz wokół samego zdjęcia */
+    box-sizing: border-box; /* Zapewnia, że padding będzie wliczany do rozmiaru obrazu */
+}
+
