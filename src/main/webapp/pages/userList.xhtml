@@ -8,7 +8,11 @@
         <ui:define name="pageContent">
             <h:form id="formId">
                 <p:commandButton value="Dodaj użytkownika" action="userCreate?faces-redirect=true" styleClass="ui-button-secondary" />
-                <p:dataTable id="dataTableId" var="user" value="#{userListBB.fullList}">
+                <p:dataTable var="user" value="#{userListBB.lazyModel}"
+                             paginator="true" rows="10" lazy="true"
+                             paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                             rowsPerPageTemplate="5,10,15" id="dataTableId"
+                             >
                     <p:column headerText="ID">
                         <h:outputText value="#{user.id}" />
                     </p:column>

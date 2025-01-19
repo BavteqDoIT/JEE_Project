@@ -11,6 +11,7 @@ com\javaproj\pilatesproject\user\UserListBB.class
 com\javaproj\pilatesproject\dao\UserDAO.class
 com\javaproj\pilatesproject\user\UserEditBB.class
 com\javaproj\pilatesproject\login\LoginBB.class
+com\javaproj\pilatesproject\user\UserListBB$1.class
 com\javaproj\pilatesproject\dao\PassDAO.class
 com\javaproj\pilatesproject\resources\JakartaEE11Resource.class
 com\javaproj\pilatesproject\entities\Pass.class

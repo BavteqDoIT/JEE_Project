@@ -18,9 +18,9 @@ public class UserDAO {
    public void create(User user) {
     try {
         em.persist(user);
-        em.flush();  // Wymusza zapis w bazie
+        em.flush();
     } catch (Exception e) {
-        e.printStackTrace(); // Logowanie błędów
+        e.printStackTrace();
     }
 }
 
@@ -34,7 +34,7 @@ public class UserDAO {
     }
     
     public void update(User user) {
-        em.merge(user);  // Zaktualizowanie użytkownika w bazie danych
+        em.merge(user);
     
 }
 
@@ -62,5 +62,17 @@ public class UserDAO {
     public String getUserRoleFromDatabase(User user) {
         // Zakładając, że rola jest przechowywana w polu "role" w klasie User
         return user.getRole();
+    }
+    
+    public int countUsers() {
+        Query query = em.createQuery("SELECT COUNT(u) FROM User u");
+        return ((Long) query.getSingleResult()).intValue();
+    }
+    
+    public List<User> findUsers(int offset, int pageSize) {
+        Query query = em.createQuery("SELECT u FROM User u");
+        query.setFirstResult(offset);
+        query.setMaxResults(pageSize);
+        return query.getResultList();
     }
 }

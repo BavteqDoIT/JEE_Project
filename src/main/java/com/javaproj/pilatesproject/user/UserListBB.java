@@ -2,6 +2,7 @@ package com.javaproj.pilatesproject.user;
 
 import com.javaproj.pilatesproject.dao.UserDAO;
 import com.javaproj.pilatesproject.entities.User;
+import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.context.ExternalContext;
@@ -9,6 +10,10 @@ import jakarta.faces.context.Flash;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import java.util.List;
+import java.util.Map;
+import org.primefaces.model.FilterMeta;
+import org.primefaces.model.LazyDataModel;
+import org.primefaces.model.SortMeta;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -27,6 +32,7 @@ public class UserListBB {
     private List<User> userList;
     private User newUser = new User();
     private User selectedUser;  // Dodajemy pole dla edytowanego użytkownika
+    private LazyDataModel<User> lazyModel;
 
     @Inject
     ExternalContext extcontext;
@@ -36,7 +42,29 @@ public class UserListBB {
 
     @EJB
     UserDAO userDAO;
+    
+    @PostConstruct
+    public void init() {
+        lazyModel = new LazyDataModel<User>() {
+            @Override
+            public int count(Map<String, FilterMeta> filterBy) {
+                return (int) userDAO.countUsers();
+            }
 
+            @Override
+            public List<User> load(int offset, int pageSize, Map<String, SortMeta> sortBy, Map<String, FilterMeta> filterBy) {
+
+                List<User> users = userDAO.findUsers(offset, pageSize);
+                return users;
+            }
+
+        };
+    }
+
+    public LazyDataModel<User> getLazyModel(){
+        return lazyModel;
+    }
+    
     public User getNewUser() {
         return newUser;
     }
