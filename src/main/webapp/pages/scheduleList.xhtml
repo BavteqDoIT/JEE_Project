@@ -7,13 +7,16 @@
     <ui:composition template="/templates/page-template.xhtml">
         <ui:define name="pageContent">
             <h:form id="formId">
-                <p:commandButton value="Dodaj zajęcia do grafiku" action="scheduleCreate?faces-redirect=true" styleClass="ui-button-secondary" />
+                <div class="banner-about-us" style="background-image: url('#{resource['template:img/classList-first.jpg']}'); ">
+                        <span class="banner-text-top">GRAFIK</span>
+                </div>
+                <p:commandButton rendered="#{remoteClient.details.role == 'admin'}" value="Dodaj zajęcia do grafiku" action="scheduleCreate?faces-redirect=true" styleClass="ui-button-secondary" />
                 <p:dataTable id="dataTableId" var="schedule" value="#{scheduleListBB.fullList}">
-                    <p:column headerText="ID">
+                    <p:column rendered="#{remoteClient.details.role == 'admin'}" headerText="ID">
                         <h:outputText value="#{schedule.id}" />
                     </p:column>
-                    <p:column headerText="ID Zajęć">
-                        <h:outputText value="#{schedule.classId.id}" />
+                    <p:column headerText="Nazwa Zajęć">
+                        <h:outputText value="#{schedule.classId.name}" />
                     </p:column>
                     <p:column headerText="Dzień">
                         <h:outputText value="#{schedule.day}" />
@@ -24,7 +27,7 @@
                     <p:column headerText="Godzina końca">
                         <h:outputText value="#{schedule.endTime}" />
                     </p:column>
-                    <p:column headerText="Akcja">
+                    <p:column rendered="#{remoteClient.details.role == 'admin'}" headerText="Akcja">
                         <p:commandButton value="Usuń"
                                          action="#{scheduleListBB.deleteSchedule(schedule.id)}"
                                          update=":formId:dataTableId"

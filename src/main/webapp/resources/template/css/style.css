@@ -229,7 +229,7 @@ body{
     text-align: center;
 }
 
-.about-us-container {
+.about-us-container, .studio-container {
     display: flex;
     width: 100%;
     margin-top: 5em
@@ -263,3 +263,37 @@ body{
     box-sizing: border-box; /* Zapewnia, że padding będzie wliczany do rozmiaru obrazu */
 }
 
+.studio-description, .pilates-description {
+    margin: 5em;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+}
+
+.studio-left, .studio-right {
+    width: 50%;
+    padding: 0.5em;
+    box-sizing: border-box;
+}
+
+.studio-left img, .studio-right img {
+    width: 100%; /* Ustala, że obraz będzie zajmował 100% dostępnej szerokości */
+    height: auto; /* Zapewnia proporcjonalne dostosowanie wysokości */
+    padding: 0.5em; /* Dodatkowy luz wokół samego zdjęcia */
+    box-sizing: border-box; /* Zapewnia, że padding będzie wliczany do rozmiaru obrazu */
+}
+
+.studio-left p, .studio-right p {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
+}
+
+.contact {
+    display: flex;
+    flex-direction: column; /* Ustawia elementy pod sobą */
+    justify-content: center; /* Wyśrodkowanie w pionie */
+    align-items: center; /* Wyśrodkowanie w poziomie */
+    text-align: center; /* Tekst na środku */
+    height: 100vh; /* Wysokość na całą dostępną przestrzeń */
+    padding: 20px; /* Dodatkowy odstęp wewnętrzny */
+    box-sizing: border-box; /* Uwzględnia padding w obliczeniach */
+}

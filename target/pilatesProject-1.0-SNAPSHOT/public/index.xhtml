@@ -9,13 +9,13 @@
         <ui:define name="pageContent">
             <div class="fontFamily">
                 <div class="admin-menu-container">
-                    <p:commandButton value="Panel użytkowników" action="/pages/userList.xhtml"
+                    <p:commandButton value="Panel użytkowników" action="/pages/userList?faces-redirect=true"
                                      rendered="#{remoteClient.details.role == 'admin'}"/>
-                    <p:commandButton value="Panel karnetów" action="/pages/passList.xhtml"
+                    <p:commandButton value="Panel karnetów" action="/pages/passList?faces-redirect=true"
                                      rendered="#{remoteClient.details.role == 'admin'}"/>
-                    <p:commandButton value="Panel zajęć" action="/pages/classList.xhtml"
+                    <p:commandButton value="Panel zajęć" action="/pages/classList?faces-redirect=true"
                                      rendered="#{remoteClient.details.role == 'admin'}"/>
-                    <p:commandButton value="Panel grafiku" action="/pages/scheduleList.xhtml"
+                    <p:commandButton value="Panel grafiku" action="/pages/scheduleList?faces-redirect=true"
                                      rendered="#{remoteClient.details.role == 'admin'}"/>
                     <p:commandButton type="button" value="Panel administratora" icon="pi pi-fw pi-desktop" 
                                      rendered="#{remoteClient.details.role == 'admin'}" action="#"/>
@@ -51,7 +51,7 @@
                         kwalifikacje poprzez szkolenia u najlepszych master trenerów w Polsce.
                     </div>
                     <p:commandButton value="CZYTAJ WIĘCEJ"  
-                                     action="/public/aboutUs.xhtml"
+                                     action="/public/aboutUs?faces-redirect=true"
                                      styleClass="index-menu-item-button"/>
                 </div>
 
@@ -64,7 +64,7 @@
                         personalne. W obu przypadkach łączymy klasyczną metodę pracy na matach z dużym i małym sprzętem najwyższej 
                         jakości, który został zaprojektowanym przez samego twórcę tej metody  – Josepha Pilatesa.
                     </div>
-                    <p:commandButton value="CZYTAJ WIĘCEJ" styleClass="index-menu-item-button"/>
+                    <p:commandButton action="/public/studio?faces-redirect=true" value="CZYTAJ WIĘCEJ" styleClass="index-menu-item-button"/>
                 </div>
 
                 <div class="index-menu-item">
@@ -82,7 +82,7 @@
                         panowanie nad sobą, płynne ruchy i dokładność są podstawowymi zasadami tej techniki. 
                         Przestrzeganie ich zapewni ci bezpieczeństwo i szybko przyniesie upragnione efekty.
                     </div>
-                    <p:commandButton value="CZYTAJ WIĘCEJ" styleClass="index-menu-item-button"/>
+                    <p:commandButton action="/public/pilates?faces-redirect=true" value="CZYTAJ WIĘCEJ" styleClass="index-menu-item-button"/>
                 </div>
                 <div class="banner-image" style="background-image: url('#{resource['template:img/welcome-second.jpg']}');">
                     <span class="banner-text-top">Przyjdź przekonaj się sam, że pilates jest dla wszystkich!</span>

@@ -31,7 +31,12 @@
                 /public : PUBLIC, admin, user;
                 /public/index.xhtml : PUBLIC;
                 /public/aboutUs.xhtml : PUBLIC;
+                /public/studio.xhtml : PUBLIC;
+                /public/pilates.xhtml : PUBLIC;
+                /public/contact.xhtml : PUBLIC;
                 /pages : admin;
+                /pages/passList.xhtml: PUBLIC;
+                /pages/scheduleList.xhtml: PUBLIC;
                 /pages/calc : user, manager, admin;
                 /pages/admin : admin;
                 /pages/manager : admin, manager;
