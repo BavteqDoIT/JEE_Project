@@ -14,20 +14,39 @@
             <h:body>
                 <h:form id="createScheduleForm">
                     <p:panel header="Dodaj zajęcia" styleClass="add-button">
-
-                        <p:outputLabel for="classId" value="ID Zajęć:" />
-                        <p:inputText id="classId" value="#{scheduleListBB.newSchedule.classId.id}" required="true" requiredMessage="ID zajęć jest wymagane" styleClass="width-100"/>
-
-                        <p:outputLabel for="startTime" value="Godzina rozpoczęcia:" />
-                        <p:inputText id="startTime" value="#{scheduleListBB.newSchedule.startTime}" required="true" requiredMessage="Godzina startu jest wymagana" styleClass="width-100"/>
-
-                        <p:outputLabel for="endTime" value="Godzina zakończenia" />
-                        <p:inputText id="endTime" value="#{scheduleListBB.newSchedule.endTime}" required="true" requiredMessage="Godzina zakończenia jest wymagana" styleClass="width-100"/>
-
-                        <p:outputLabel for="day" value="Dzień:" />
-                        <p:inputText id="day" value="#{scheduleListBB.newSchedule.day}" required="true" requiredMessage="Dzień jest wymagany" validatorMessage="Zła nazwa dnia" styleClass="width-100"/>
-
-                        <p:commandButton value="Dodaj" action="#{scheduleListBB.saveNewSchedule}" update="createScheduleForm" icon="pi pi-save" styleClass="ui-button-success" />
+                        <div>
+                            <p:outputLabel for="classId" value="Wybierz zajęcia:" />
+                            <p:selectOneMenu id="classId" 
+                                             value="#{scheduleListBB.newSchedule.classId.id}" 
+                                             required="true" 
+                                             requiredMessage="Wybór zajęć jest wymagany" 
+                                             styleClass="width-100">
+                                <f:selectItems value="#{scheduleListBB.availableClasses}" var="classItem" 
+                                               itemValue="#{classItem.value}" 
+                                               itemLabel="#{classItem.label}" />
+                            </p:selectOneMenu>
+                        </div>
+                        <div>
+                            <p:outputLabel for="startTime" value="Godzina rozpoczęcia:" />
+                            <p:selectOneMenu id="startTime" value="#{scheduleListBB.newSchedule.startTime}" required="true" requiredMessage="Godzina startu jest wymagana" styleClass="width-100">
+                                <f:selectItems value="#{scheduleListBB.availableStartTimes}" />
+                            </p:selectOneMenu>
+                        </div>
+                        <div>
+                            <p:outputLabel for="endTime" value="Godzina zakończenia:" />
+                            <p:selectOneMenu id="endTime" value="#{scheduleListBB.newSchedule.endTime}" required="true" requiredMessage="Godzina zakończenia jest wymagana" styleClass="width-100">
+                                <f:selectItems value="#{scheduleListBB.availableEndTimes}" />
+                            </p:selectOneMenu>
+                        </div>
+                        <div>
+                            <p:outputLabel for="day" value="Dzień tygodnia:" />
+                            <p:selectOneMenu id="day" value="#{scheduleListBB.newSchedule.day}" required="true" requiredMessage="Dzień jest wymagany" styleClass="width-100">
+                                <f:selectItems value="#{scheduleListBB.availableDays}" />
+                            </p:selectOneMenu>
+                        </div>
+                        <div>
+                            <p:commandButton value="Dodaj" action="#{scheduleListBB.saveNewSchedule}" update="createScheduleForm" icon="pi pi-save" styleClass="ui-button-success" />
+                        </div>
                     </p:panel>
                 </h:form>
             </h:body>

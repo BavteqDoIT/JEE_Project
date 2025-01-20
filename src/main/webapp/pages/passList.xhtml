@@ -24,6 +24,19 @@
                     <p:column headerText="Cena">
                         <h:outputText value="#{pass.price}" />
                     </p:column>
+                    <p:column headerText="Karnet">
+                                <p:commandButton rendered="#{remoteClient.details.passesId.id != pass.id}" 
+                                    value="Kup karnet" 
+                                    action="#"
+                                    icon="pi pi-sign-in"
+                                    styleClass="rounded-button ui-button-success" />
+                                
+                                <p:commandButton rendered="#{remoteClient.details.passesId.id == pass.id}" 
+                                                value="Zrezygnuj" 
+                                                action="#"
+                                                icon="pi pi-sign-in"
+                                                styleClass="rounded-button ui-button-danger" />
+                    </p:column>
                     <p:column headerText="Akcja" rendered="#{remoteClient.details.role == 'admin'}">
                         <p:commandButton value="Usuń"
                                          action="#{passListBB.deletePass(pass.id)}"

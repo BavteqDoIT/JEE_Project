@@ -8,8 +8,11 @@ import jakarta.ejb.EJB;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.Flash;
+import jakarta.faces.model.SelectItem;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /*
@@ -100,5 +103,31 @@ public class ScheduleListBB {
         // 1. Pass object through flash
         flash.put("schedule", schedule);
         return PAGE_SCHEDULE_EDIT;
+    }
+    
+    public List<String> getAvailableStartTimes() {
+        return Arrays.asList("08:00", "09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00","17:00","18:00","19:00","20:00","21:00","22:00");
+    }
+
+    public List<String> getAvailableEndTimes() {
+        return Arrays.asList("09:00", "10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00","17:00","18:00","19:00","20:00","21:00","22:00","23:00");
+    }
+
+    // Lista dni tygodnia
+    public List<String> getAvailableDays() {
+        return Arrays.asList("Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota", "Niedziela");
+    }
+    
+    public List<SelectItem> getAvailableClasses() {
+        List<SelectItem> items = new ArrayList<>();
+        for (com.javaproj.pilatesproject.entities.Class classEntity : classDAO.findAll()) {
+            items.add(new SelectItem(classEntity.getId(), classEntity.getName()));
+        }
+        return items;
+    }
+    
+    public List<Schedule> getClassesForDay(String day) {
+        // Wyszukiwanie zajęć w bazie danych na podstawie dnia tygodnia
+        return scheduleDAO.findByDay(day); // Załóżmy, że masz metodę w DAO, która zwraca zajęcia na podstawie dnia
     }
 }

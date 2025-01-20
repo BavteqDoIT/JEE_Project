@@ -297,3 +297,10 @@ body{
     padding: 20px; /* Dodatkowy odstęp wewnętrzny */
     box-sizing: border-box; /* Uwzględnia padding w obliczeniach */
 }
+
+.centered-button {
+    display: block;
+    margin: 1em auto; /* Dodaje margines 1em od góry i dołu, auto w poziomie */
+    text-align: center;
+    width: fit-content;
+}

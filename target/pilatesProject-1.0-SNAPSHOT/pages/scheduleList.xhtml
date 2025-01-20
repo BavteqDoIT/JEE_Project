@@ -7,37 +7,219 @@
     <ui:composition template="/templates/page-template.xhtml">
         <ui:define name="pageContent">
             <h:form id="formId">
-                <div class="banner-about-us" style="background-image: url('#{resource['template:img/classList-first.jpg']}'); ">
-                        <span class="banner-text-top">GRAFIK</span>
+                <div class="banner-about-us" style="background-image: url('#{resource['template:img/classList-first.jpg']}');">
+                    <span class="banner-text-top">GRAFIK</span>
                 </div>
-                <p:commandButton rendered="#{remoteClient.details.role == 'admin'}" value="Dodaj zajęcia do grafiku" action="scheduleCreate?faces-redirect=true" styleClass="ui-button-secondary" />
-                <p:dataTable id="dataTableId" var="schedule" value="#{scheduleListBB.fullList}">
-                    <p:column rendered="#{remoteClient.details.role == 'admin'}" headerText="ID">
-                        <h:outputText value="#{schedule.id}" />
-                    </p:column>
-                    <p:column headerText="Nazwa Zajęć">
-                        <h:outputText value="#{schedule.classId.name}" />
-                    </p:column>
-                    <p:column headerText="Dzień">
-                        <h:outputText value="#{schedule.day}" />
-                    </p:column>
-                    <p:column headerText="Godzina startu">
-                        <h:outputText value="#{schedule.startTime}" />
-                    </p:column>
-                    <p:column headerText="Godzina końca">
-                        <h:outputText value="#{schedule.endTime}" />
-                    </p:column>
-                    <p:column rendered="#{remoteClient.details.role == 'admin'}" headerText="Akcja">
-                        <p:commandButton value="Usuń"
-                                         action="#{scheduleListBB.deleteSchedule(schedule.id)}"
-                                         update=":formId:dataTableId"
-                                         icon="pi pi-trash"
-                                         styleClass="ui-button-danger" />
-                         <p:commandButton value="Edytuj" style="margin-right: 0.5em"
-                                          icon="pi pi-pencil" 
-                                          action="#{scheduleListBB.editSchedule(schedule)}"/>
-                    </p:column>
-                </p:dataTable>
+                <div class="centered-button">
+                    <p:commandButton rendered="#{remoteClient.details.role == 'admin'}" value="Dodaj zajęcia do grafiku" action="scheduleCreate?faces-redirect=true" styleClass="ui-button-secondary" />
+                </div>
+                <p:tabView>
+                    <p:tab title="Poniedziałek">
+                        <p:dataTable id="mondayTable" var="schedule" value="#{scheduleListBB.getClassesForDay('Poniedziałek')}">
+                            <p:column headerText="Nazwa Zajęć">
+                                <h:outputText value="#{schedule.classId.name}" />
+                            </p:column>
+                            <p:column headerText="Godzina startu">
+                                <h:outputText value="#{schedule.startTime}" />
+                            </p:column>
+                            <p:column headerText="Godzina końca">
+                                <h:outputText value="#{schedule.endTime}" />
+                            </p:column>
+                            <p:column headerText="Zapisz się">
+                                <p:commandButton value="Zapisz się" action="#"
+                                                 icon="pi pi-sign-in"
+                                                 styleClass="rounded-button ui-button-success" />
+                            </p:column>
+                            <p:column rendered="#{remoteClient.details.role == 'admin'}" headerText="Akcja">
+                                <p:commandButton value="Usuń"
+                                                 action="#{scheduleListBB.deleteSchedule(schedule.id)}"
+                                                 update="mondayTable"
+                                                 icon="pi pi-trash"
+                                                 styleClass="ui-button-danger" />
+                                <p:commandButton value="Edytuj"
+                                                 action="#{scheduleListBB.editSchedule(schedule)}"
+                                                 style="margin-right: 0.5em"
+                                                 icon="pi pi-pencil" />
+                            </p:column>
+                        </p:dataTable>
+                    </p:tab>
+
+                    <p:tab title="Wtorek">
+                        <p:dataTable id="tuesdayTable" var="schedule" value="#{scheduleListBB.getClassesForDay('Wtorek')}">
+                            <p:column headerText="Nazwa Zajęć">
+                                <h:outputText value="#{schedule.classId.name}" />
+                            </p:column>
+                            <p:column headerText="Godzina startu">
+                                <h:outputText value="#{schedule.startTime}" />
+                            </p:column>
+                            <p:column headerText="Godzina końca">
+                                <h:outputText value="#{schedule.endTime}" />
+                            </p:column>
+                            <p:column headerText="Zapisz się">
+                                <p:commandButton value="Zapisz się" action="#"
+                                                 icon="pi pi-sign-in"
+                                                 styleClass="rounded-button ui-button-success" />
+                            </p:column>
+                            <p:column rendered="#{remoteClient.details.role == 'admin'}" headerText="Akcja">
+                                <p:commandButton value="Usuń"
+                                                 action="#{scheduleListBB.deleteSchedule(schedule.id)}"
+                                                 update="tuesdayTable"
+                                                 icon="pi pi-trash"
+                                                 styleClass="ui-button-danger" />
+                                <p:commandButton value="Edytuj"
+                                                 action="#{scheduleListBB.editSchedule(schedule)}"
+                                                 style="margin-right: 0.5em"
+                                                 icon="pi pi-pencil" />
+                            </p:column>
+                        </p:dataTable>
+                    </p:tab>
+
+                    <p:tab title="Środa">
+                        <p:dataTable id="wednesdayTable" var="schedule" value="#{scheduleListBB.getClassesForDay('Środa')}">
+                            <p:column headerText="Nazwa Zajęć">
+                                <h:outputText value="#{schedule.classId.name}" />
+                            </p:column>
+                            <p:column headerText="Godzina startu">
+                                <h:outputText value="#{schedule.startTime}" />
+                            </p:column>
+                            <p:column headerText="Godzina końca">
+                                <h:outputText value="#{schedule.endTime}" />
+                            </p:column>
+                            <p:column headerText="Zapisz się">
+                                <p:commandButton value="Zapisz się" action="#"
+                                                 icon="pi pi-sign-in"
+                                                 styleClass="rounded-button ui-button-success" />
+                            </p:column>
+                            <p:column rendered="#{remoteClient.details.role == 'admin'}" headerText="Akcja">
+                                <p:commandButton value="Usuń"
+                                                 action="#{scheduleListBB.deleteSchedule(schedule.id)}"
+                                                 update="wednesdayTable"
+                                                 icon="pi pi-trash"
+                                                 styleClass="ui-button-danger" />
+                                <p:commandButton value="Edytuj"
+                                                 action="#{scheduleListBB.editSchedule(schedule)}"
+                                                 style="margin-right: 0.5em"
+                                                 icon="pi pi-pencil" />
+                            </p:column>
+                        </p:dataTable>
+                    </p:tab>
+                    <p:tab title="Czwartek">
+                        <p:dataTable id="thursdayTable" var="schedule" value="#{scheduleListBB.getClassesForDay('Czwartek')}">
+                            <p:column headerText="Nazwa Zajęć">
+                                <h:outputText value="#{schedule.classId.name}" />
+                            </p:column>
+                            <p:column headerText="Godzina startu">
+                                <h:outputText value="#{schedule.startTime}" />
+                            </p:column>
+                            <p:column headerText="Godzina końca">
+                                <h:outputText value="#{schedule.endTime}" />
+                            </p:column>
+                            <p:column headerText="Zapisz się">
+                                <p:commandButton value="Zapisz się" action="#"
+                                                 icon="pi pi-sign-in"
+                                                 styleClass="rounded-button ui-button-success" />
+                            </p:column>
+                            <p:column rendered="#{remoteClient.details.role == 'admin'}" headerText="Akcja">
+                                <p:commandButton value="Usuń"
+                                                 action="#{scheduleListBB.deleteSchedule(schedule.id)}"
+                                                 update="thursdayTable"
+                                                 icon="pi pi-trash"
+                                                 styleClass="ui-button-danger" />
+                                <p:commandButton value="Edytuj"
+                                                 action="#{scheduleListBB.editSchedule(schedule)}"
+                                                 style="margin-right: 0.5em"
+                                                 icon="pi pi-pencil" />
+                            </p:column>
+                        </p:dataTable>
+                    </p:tab>
+                    <p:tab title="Piątek">
+                        <p:dataTable id="fridayTable" var="schedule" value="#{scheduleListBB.getClassesForDay('Piątek')}">
+                            <p:column headerText="Nazwa Zajęć">
+                                <h:outputText value="#{schedule.classId.name}" />
+                            </p:column>
+                            <p:column headerText="Godzina startu">
+                                <h:outputText value="#{schedule.startTime}" />
+                            </p:column>
+                            <p:column headerText="Godzina końca">
+                                <h:outputText value="#{schedule.endTime}" />
+                            </p:column>
+                            <p:column headerText="Zapisz się">
+                                <p:commandButton value="Zapisz się" action="#"
+                                                 icon="pi pi-sign-in"
+                                                 styleClass="rounded-button ui-button-success" />
+                            </p:column>
+                            <p:column rendered="#{remoteClient.details.role == 'admin'}" headerText="Akcja">
+                                <p:commandButton value="Usuń"
+                                                 action="#{scheduleListBB.deleteSchedule(schedule.id)}"
+                                                 update="fridayTable"
+                                                 icon="pi pi-trash"
+                                                 styleClass="ui-button-danger" />
+                                <p:commandButton value="Edytuj"
+                                                 action="#{scheduleListBB.editSchedule(schedule)}"
+                                                 style="margin-right: 0.5em"
+                                                 icon="pi pi-pencil" />
+                            </p:column>
+                        </p:dataTable>
+                    </p:tab>
+                    <p:tab title="Sobota">
+                        <p:dataTable id="saturdayTable" var="schedule" value="#{scheduleListBB.getClassesForDay('Sobota')}">
+                            <p:column headerText="Nazwa Zajęć">
+                                <h:outputText value="#{schedule.classId.name}" />
+                            </p:column>
+                            <p:column headerText="Godzina startu">
+                                <h:outputText value="#{schedule.startTime}" />
+                            </p:column>
+                            <p:column headerText="Godzina końca">
+                                <h:outputText value="#{schedule.endTime}" />
+                            </p:column>
+                            <p:column headerText="Zapisz się">
+                                <p:commandButton value="Zapisz się" action="#"
+                                                 icon="pi pi-sign-in"
+                                                 styleClass="rounded-button ui-button-success" />
+                            </p:column>
+                            <p:column rendered="#{remoteClient.details.role == 'admin'}" headerText="Akcja">
+                                <p:commandButton value="Usuń"
+                                                 action="#{scheduleListBB.deleteSchedule(schedule.id)}"
+                                                 update="saturdayTable"
+                                                 icon="pi pi-trash"
+                                                 styleClass="ui-button-danger" />
+                                <p:commandButton value="Edytuj"
+                                                 action="#{scheduleListBB.editSchedule(schedule)}"
+                                                 style="margin-right: 0.5em"
+                                                 icon="pi pi-pencil" />
+                            </p:column>
+                        </p:dataTable>
+                    </p:tab>
+                    <p:tab title="Niedziela">
+                        <p:dataTable id="sundayTable" var="schedule" value="#{scheduleListBB.getClassesForDay('Niedziela')}">
+                            <p:column headerText="Nazwa Zajęć">
+                                <h:outputText value="#{schedule.classId.name}" />
+                            </p:column>
+                            <p:column headerText="Godzina startu">
+                                <h:outputText value="#{schedule.startTime}" />
+                            </p:column>
+                            <p:column headerText="Godzina końca">
+                                <h:outputText value="#{schedule.endTime}" />
+                            </p:column>
+                            <p:column headerText="Zapisz się">
+                                <p:commandButton value="Zapisz się" action="#"
+                                                 icon="pi pi-sign-in"
+                                                 styleClass="rounded-button ui-button-success" />
+                            </p:column>
+                            <p:column rendered="#{remoteClient.details.role == 'admin'}" headerText="Akcja">
+                                <p:commandButton value="Usuń"
+                                                 action="#{scheduleListBB.deleteSchedule(schedule.id)}"
+                                                 update="sundayTable"
+                                                 icon="pi pi-trash"
+                                                 styleClass="ui-button-danger" />
+                                <p:commandButton value="Edytuj"
+                                                 action="#{scheduleListBB.editSchedule(schedule)}"
+                                                 style="margin-right: 0.5em"
+                                                 icon="pi pi-pencil" />
+                            </p:column>
+                        </p:dataTable>
+                    </p:tab>
+                </p:tabView>
             </h:form>
         </ui:define>
     </ui:composition>
