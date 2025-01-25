@@ -2,10 +2,12 @@ package com.javaproj.pilatesproject.pass;
 
 import com.javaproj.pilatesproject.dao.PassDAO;
 import com.javaproj.pilatesproject.entities.Pass;
+import com.javaproj.pilatesproject.entities.User;
 import jakarta.ejb.EJB;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.context.ExternalContext;
 import jakarta.faces.context.Flash;
+import jakarta.faces.simplesecurity.RemoteClient;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
 import java.util.List;
@@ -23,9 +25,11 @@ import java.util.List;
 @RequestScoped
 public class PassListBB {
     private static final String PAGE_PASS_EDIT = "passEdit?faces-redirect=true";
+    private static final String PAGE_PASS_BUY = "passBuy?faces-redirect=true";
     private List<Pass> passList;
     private Pass newPass = new Pass();
     private Pass selectedPass;  // Dodajemy pole dla edytowanego karnetu
+    private Long passId;
 
     @Inject
     ExternalContext extcontext;
@@ -35,7 +39,7 @@ public class PassListBB {
 
     @EJB
     PassDAO passDAO;
-
+    
     public Pass getNewPass() {
         return newPass;
     }
@@ -50,6 +54,12 @@ public class PassListBB {
 
     public void setSelectedPass(Pass selectedPass) {
         this.selectedPass = selectedPass;
+    }
+    
+    public void findById() {
+        if (passId != null) {
+            selectedPass = passDAO.findById(passId);
+        }
     }
 
     public List<Pass> getFullList() {

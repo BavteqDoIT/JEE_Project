@@ -24,10 +24,10 @@ public class PassEditBB implements Serializable {
 
 	private Pass pass = new Pass();
 	private Pass loaded = null;
-
+        
 	@EJB
 	PassDAO passDAO;
-
+        
 	@Inject
 	FacesContext context;
 
@@ -45,7 +45,6 @@ public class PassEditBB implements Serializable {
 
 		// 2. load person passed through flash
 		loaded = (Pass) flash.get("pass");
-
 		// cleaning: attribute received => delete it from session
 		if (loaded != null) {
 			pass = loaded;

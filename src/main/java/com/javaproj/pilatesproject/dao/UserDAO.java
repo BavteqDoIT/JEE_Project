@@ -37,7 +37,7 @@ public class UserDAO {
         em.merge(user);
     
 }
-
+    
     public void delete(Long id) {
         User user = findById(id);
         if (user != null) {

@@ -1,14 +1,19 @@
 package com.javaproj.pilatesproject.user;
 
+import com.javaproj.pilatesproject.dao.PassDAO;
 import com.javaproj.pilatesproject.dao.UserDAO;
+import com.javaproj.pilatesproject.entities.Pass;
 import com.javaproj.pilatesproject.entities.User;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.context.ExternalContext;
+import jakarta.faces.context.FacesContext;
 import jakarta.faces.context.Flash;
+import jakarta.faces.simplesecurity.RemoteClient;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 import org.primefaces.model.FilterMeta;
@@ -28,11 +33,13 @@ import org.primefaces.model.SortMeta;
 @RequestScoped
 public class UserListBB {
     private static final String PAGE_USER_EDIT = "userEdit?faces-redirect=true";
+    private static final String PAGE_USER_BUY = "passBuy?faces-redirect=true";
     private String surname;
     private List<User> userList;
     private User newUser = new User();
     private User selectedUser;  // Dodajemy pole dla edytowanego użytkownika
     private LazyDataModel<User> lazyModel;
+    private Long userId;
 
     @Inject
     ExternalContext extcontext;
@@ -42,6 +49,9 @@ public class UserListBB {
 
     @EJB
     UserDAO userDAO;
+    
+    @EJB
+    PassDAO passDAO;
     
     @PostConstruct
     public void init() {
@@ -121,4 +131,60 @@ public class UserListBB {
 		
 		return PAGE_USER_EDIT;
 	}
-}
+    
+    public User findUserById(Long id) {
+        return userDAO.findById(id);
+    }
+    
+    public Pass findPassById(Long id) {
+        return passDAO.findById(id);
+    }
+    
+        public String buyPass (Long id, Long passId){
+                    //1. Pass object through session
+                    //HttpSession session = (HttpSession) extcontext.getSession(true);
+                    //session.setAttribute("person", person);
+
+                    //2. Pass object through flash 
+                    Pass pass = findPassById(passId);
+                    User user = findUserById(id);
+                    flash.put("user", user);
+                    flash.put("pass", pass);
+
+                    return PAGE_USER_BUY;
+            }
+        
+        public void rejectPass (Long id){
+                    //1. Pass object through session
+                    //HttpSession session = (HttpSession) extcontext.getSession(true);
+                    //session.setAttribute("person", person);
+
+                    //2. Pass object through flash 
+                    User user = findUserById(id);
+
+                    user.setPassesId(null);
+                    
+                    userDAO.update(user);
+
+                    refreshSession(user);
+            }
+        
+        public void refreshSession(User updatedUser) {
+            FacesContext context = FacesContext.getCurrentInstance();
+            HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+
+            // Tworzymy obiekt RemoteClient, aby przechować zaktualizowane dane
+            RemoteClient<User> client = new RemoteClient<>();
+            client.setDetails(updatedUser);
+
+            // Pamiętaj o przypisaniu roli (jeśli jest to wymagane)
+            String role = userDAO.getUserRoleFromDatabase(updatedUser);
+            if (role != null) {
+                client.getRoles().clear();  // Czyść poprzednie role
+                client.getRoles().add(role);
+            }
+
+            // Zapisz obiekt RemoteClient w sesji
+            client.store(request);
+        }
+    }

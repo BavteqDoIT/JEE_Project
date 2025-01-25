@@ -24,18 +24,27 @@
                     <p:column headerText="Cena">
                         <h:outputText value="#{pass.price}" />
                     </p:column>
-                    <p:column headerText="Karnet">
-                                <p:commandButton rendered="#{remoteClient.details.passesId.id != pass.id}" 
+                    <p:column headerText="Karnet" rendered="#{remoteClient.details.role == 'user' or remoteClient.details.role == 'instruktor' or remoteClient.details.role == 'admin'}" >
+                        <p:commandButton rendered="#{remoteClient.details.passesId.id != pass.id}" 
                                     value="Kup karnet" 
-                                    action="#"
+                                    action="#{userListBB.buyPass(remoteClient.details.id, pass.id)}"
                                     icon="pi pi-sign-in"
-                                    styleClass="rounded-button ui-button-success" />
-                                
+                                    styleClass="rounded-button ui-button-success">
+                            <f:param name="passId" value="#{pass.id}" />
+                        </p:commandButton>
                                 <p:commandButton rendered="#{remoteClient.details.passesId.id == pass.id}" 
                                                 value="Zrezygnuj" 
-                                                action="#"
+                                                action="#{userListBB.rejectPass(remoteClient.details.id)}"
+                                                update=":formId:dataTableId"
                                                 icon="pi pi-sign-in"
                                                 styleClass="rounded-button ui-button-danger" />
+                    </p:column>
+                    <p:column headerText="Karnet" rendered="#{remoteClient.details.role != 'user' and remoteClient.details.role != 'instruktor' and remoteClient.details.role != 'admin'}" >
+                                <p:commandButton rendered="#{remoteClient.details.passesId.id != pass.id }" 
+                                    value="Kup karnet!" 
+                                    action="/public/login?faces-redirect=true"
+                                    icon="pi pi-sign-in"
+                                    styleClass="rounded-button ui-button-success" />
                     </p:column>
                     <p:column headerText="Akcja" rendered="#{remoteClient.details.role == 'admin'}">
                         <p:commandButton value="Usuń"

@@ -138,8 +138,12 @@ public class User implements Serializable {
         return passesId;
     }
 
-    public void setPassesId(Pass passesId) {
-        this.passesId = passesId;
+    public void setPassesId(Pass pass) {
+        if (pass == null) {
+            this.passesId = null;
+        } else {
+            this.passesId = pass;
+        }
     }
 
     @Override
