@@ -110,6 +110,14 @@ public class UserListBB {
         flash.put("message", "User successfully created.");
         return "userList?faces-redirect=true";
     }
+    
+    public String registerUser() {
+        newUser.setRole("user");
+        System.out.println("saveNewUser method called");
+        userDAO.create(newUser);
+        flash.put("message", "User successfully created.");
+        return "login?faces-redirect=true";
+    }
 
     // Metoda edytująca użytkownika
     public String saveEditedUser() {

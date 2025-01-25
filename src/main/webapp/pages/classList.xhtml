@@ -9,8 +9,10 @@
             <div class="banner-about-us" style="background-image: url('#{resource['template:img/classList-first.jpg']}'); ">
                         <span class="banner-text-top">ZAJĘCIA</span>
             </div>
-            <h:form id="formId">
+            <div class="centered-button">
                 <p:commandButton rendered="#{remoteClient.details.role == 'admin'}" value="Dodaj zajęcia" action="classCreate?faces-redirect=true" styleClass="ui-button-secondary" />
+            </div>
+            <h:form id="formId">
                 <p:dataTable id="dataTableId" var="class" value="#{classListBB.fullList}">
                     <p:column rendered="#{remoteClient.details.role == 'admin'}" headerText="ID">
                         <h:outputText value="#{class.id}" />

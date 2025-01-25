@@ -9,8 +9,10 @@
             <div class="banner-about-us" style="background-image: url('#{resource['template:img/passList-first.jpg']}'); ">
                         <span class="banner-text-top">OFERTA / CENNIK</span>
             </div>
-            <h:form id="formId">
+            <div class="centered-button">
                 <p:commandButton rendered="#{remoteClient.details.role == 'admin'}" value="Dodaj karnet" action="passCreate?faces-redirect=true" styleClass="ui-button-secondary" />
+            </div>
+            <h:form id="formId">
                 <p:dataTable id="dataTableId" var="pass" value="#{passListBB.fullList}">
                     <p:column headerText="ID" rendered="#{remoteClient.details.role == 'admin'}">
                         <h:outputText value="#{pass.id}" />

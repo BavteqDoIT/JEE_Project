@@ -34,12 +34,10 @@
                 /public/studio.xhtml : PUBLIC;
                 /public/pilates.xhtml : PUBLIC;
                 /public/contact.xhtml : PUBLIC;
+                /public/register.xhtml : PUBLIC;
                 /pages : admin;
                 /pages/passList.xhtml: PUBLIC;
                 /pages/scheduleList.xhtml: PUBLIC;
-                /pages/calc : user, manager, admin;
-                /pages/admin : admin;
-                /pages/manager : admin, manager;
                 /pages/passBuy.xhtml : user, admin, instruktor
             </param-value>
         </init-param>

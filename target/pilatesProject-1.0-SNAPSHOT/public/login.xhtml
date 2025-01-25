@@ -23,6 +23,8 @@
                     <p:inputText id="password" type="password" value="#{loginBB.password}" required="true" requiredMessage="Hasło jest wymagane" styleClass="width-100"/>
 
                     <p:commandButton value="Zaloguj się" action="#{loginBB.doLogin()}" update="login" icon="pi pi-sign-in" styleClass="ui-button-success" />
+                    <br></br>
+                    <h:link outcome="register" styleClass="register-link">Nie masz konta? Zarejestruj się!</h:link>
                 </p:panel>
             </h:form>
         </h:body>

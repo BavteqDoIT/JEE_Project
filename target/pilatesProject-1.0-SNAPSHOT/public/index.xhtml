@@ -11,14 +11,8 @@
                 <div class="admin-menu-container">
                     <p:commandButton value="Panel użytkowników" action="/pages/userList?faces-redirect=true"
                                      rendered="#{remoteClient.details.role == 'admin'}"/>
-                    <p:commandButton value="Panel karnetów" action="/pages/passList?faces-redirect=true"
-                                     rendered="#{remoteClient.details.role == 'admin'}"/>
                     <p:commandButton value="Panel zajęć" action="/pages/classList?faces-redirect=true"
                                      rendered="#{remoteClient.details.role == 'admin'}"/>
-                    <p:commandButton value="Panel grafiku" action="/pages/scheduleList?faces-redirect=true"
-                                     rendered="#{remoteClient.details.role == 'admin'}"/>
-                    <p:commandButton type="button" value="Panel administratora" icon="pi pi-fw pi-desktop" 
-                                     rendered="#{remoteClient.details.role == 'admin'}" action="#"/>
                 </div>
                 <!--            <p:sidebar widgetVar="sidebar1">
                                 <h2>Menu</h2>

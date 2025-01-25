@@ -7,7 +7,9 @@
     <ui:composition template="/templates/page-template.xhtml">
         <ui:define name="pageContent">
             <h:form id="formId">
-                <p:commandButton value="Dodaj użytkownika" action="userCreate?faces-redirect=true" styleClass="ui-button-secondary" />
+                <div class="centered-button">
+                    <p:commandButton value="Dodaj użytkownika" action="userCreate?faces-redirect=true" styleClass="ui-button-secondary" />
+                </div>
                 <p:dataTable var="user" value="#{userListBB.lazyModel}"
                              paginator="true" rows="10" lazy="true"
                              paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
