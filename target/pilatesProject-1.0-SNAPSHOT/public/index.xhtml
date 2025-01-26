@@ -33,6 +33,7 @@
                     <span class="banner-text-top">Cześć #{remoteClient.details.name}!</span>
                     <span class="banner-text-bottom">Fajnie, że tu z nami jesteś!</span>
                     <p:commandButton value="ZAPISZ SIĘ" styleClass="ui-button-raised ui-button-secondary ui-button-flat" 
+                                     action="/pages/scheduleList?faces-redirect=true"
                                      class="banner-button"/>
                 </div>
                 <div class="index-menu-item">
@@ -81,7 +82,8 @@
                 <div class="banner-image" style="background-image: url('#{resource['template:img/welcome-second.jpg']}');">
                     <span class="banner-text-top">Przyjdź przekonaj się sam, że pilates jest dla wszystkich!</span>
                     <span class="banner-text-bottom">nigdy nie jest za późno a walkę o sprawne ciało</span>
-                    <p:commandButton value="ZAPISZ SIĘ NA ZAJĘCIA" styleClass="banner-button"/>
+                    <p:commandButton value="ZAPISZ SIĘ NA ZAJĘCIA" styleClass="banner-button"
+                                     action="/pages/scheduleList?faces-redirect=true"/>
                 </div>
                 <div class="index-menu-item">
                     <div class="index-menu-item-description">
@@ -118,7 +120,8 @@
                         Cztery osoby i instruktor na spine correctorach to wspaniałe treningi wydłużające kręgosłup i 
                         otwierające klatkę piersiową…
                     </div>
-                    <p:commandButton value="CZYTAJ WIĘCEJ" styleClass="index-menu-item-button"/>
+                    <p:commandButton value="CZYTAJ WIĘCEJ" styleClass="index-menu-item-button"
+                                     action="/pages/scheduleList?faces-redirect=true"/>
                 </div>
             </div>
         </ui:define>

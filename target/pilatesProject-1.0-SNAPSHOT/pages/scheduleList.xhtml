@@ -25,10 +25,36 @@
                             <p:column headerText="Godzina końca">
                                 <h:outputText value="#{schedule.endTime}" />
                             </p:column>
-                            <p:column headerText="Zapisz się">
-                                <p:commandButton value="Zapisz się" action="#"
-                                                 icon="pi pi-sign-in"
-                                                 styleClass="rounded-button ui-button-success" />
+                            <p:column headerText="Zapisz się" rendered="#{remoteClient.details.role == 'user' or remoteClient.details.role == 'instruktor' or remoteClient.details.role == 'admin'}">
+                                <p:column headerText="Zapisz się"  rendered="#{scheduleUserBB.checkPass(remoteClient.details.passesId.id) == true}" >
+                                    <p:commandButton value="Zapisz się"
+                                                     rendered="#{scheduleUserBB.checkIfSigned(schedule.id, remoteClient.details.id) == true}"
+                                                     action="#{scheduleUserBB.signUserToSchedule(schedule.id, remoteClient.details.id)}"
+                                                     update="mondayTable"
+                                                     icon="pi pi-sign-in"
+                                                     styleClass="rounded-button ui-button-success" />
+
+                                    <p:commandButton value="Wypisz się"
+                                                     rendered="#{scheduleUserBB.checkToSignOut(schedule.id, remoteClient.details.id) == true}"
+                                                     action="#{scheduleUserBB.deleteScheduleUser(schedule.id, remoteClient.details.id)}"
+                                                     update="mondayTable"
+                                                     icon="pi pi-sign-out"
+                                                     styleClass="rounded-button ui-button-danger" />
+                                </p:column>         
+                                <p:column headerText="Zapisz się"  rendered="#{scheduleUserBB.checkPass(remoteClient.details.passesId.id) == false}">
+                                    <p:commandButton value="Kup karnet!"
+                                                     rendered="#{scheduleUserBB.checkIfSigned(schedule.id, remoteClient.details.id) == true}"
+                                                     action="/pages/passList?faces-redirect=true"
+                                                     icon="pi pi-sign-in"
+                                                     styleClass="rounded-button ui-button" />
+                                    </p:column>
+                            </p:column>
+                            <p:column headerText="Zapisz się" rendered="#{remoteClient.details.role != 'user' and remoteClient.details.role != 'instruktor' and remoteClient.details.role != 'admin'}" >
+                                <p:commandButton
+                                    value="Zapisz się!" 
+                                    action="/public/login?faces-redirect=true"
+                                    icon="pi pi-sign-in"
+                                    styleClass="rounded-button ui-button-success" />
                             </p:column>
                             <p:column rendered="#{remoteClient.details.role == 'admin'}" headerText="Akcja">
                                 <p:commandButton value="Usuń"
@@ -36,10 +62,6 @@
                                                  update="mondayTable"
                                                  icon="pi pi-trash"
                                                  styleClass="ui-button-danger" />
-                                <p:commandButton value="Edytuj"
-                                                 action="#{scheduleListBB.editSchedule(schedule)}"
-                                                 style="margin-right: 0.5em"
-                                                 icon="pi pi-pencil" />
                             </p:column>
                         </p:dataTable>
                     </p:tab>
@@ -55,10 +77,36 @@
                             <p:column headerText="Godzina końca">
                                 <h:outputText value="#{schedule.endTime}" />
                             </p:column>
-                            <p:column headerText="Zapisz się">
-                                <p:commandButton value="Zapisz się" action="#"
-                                                 icon="pi pi-sign-in"
-                                                 styleClass="rounded-button ui-button-success" />
+                            <p:column headerText="Zapisz się" rendered="#{remoteClient.details.role == 'user' or remoteClient.details.role == 'instruktor' or remoteClient.details.role == 'admin'}">
+                                <p:column headerText="Zapisz się"  rendered="#{scheduleUserBB.checkPass(remoteClient.details.passesId.id) == true}" >
+                                    <p:commandButton value="Zapisz się"
+                                                     rendered="#{scheduleUserBB.checkIfSigned(schedule.id, remoteClient.details.id) == true}"
+                                                     action="#{scheduleUserBB.signUserToSchedule(schedule.id, remoteClient.details.id)}"
+                                                     update="tuesdayTable"
+                                                     icon="pi pi-sign-in"
+                                                     styleClass="rounded-button ui-button-success" />
+
+                                    <p:commandButton value="Wypisz się"
+                                                     rendered="#{scheduleUserBB.checkToSignOut(schedule.id, remoteClient.details.id) == true}"
+                                                     action="#{scheduleUserBB.deleteScheduleUser(schedule.id, remoteClient.details.id)}"
+                                                     update="tuesdayTable"
+                                                     icon="pi pi-sign-out"
+                                                     styleClass="rounded-button ui-button-danger" />
+                                </p:column>         
+                                <p:column headerText="Zapisz się"  rendered="#{scheduleUserBB.checkPass(remoteClient.details.passesId.id) == false}">
+                                    <p:commandButton value="Kup karnet!"
+                                                     rendered="#{scheduleUserBB.checkIfSigned(schedule.id, remoteClient.details.id) == true}"
+                                                     action="/pages/passList?faces-redirect=true"
+                                                     icon="pi pi-sign-in"
+                                                     styleClass="rounded-button ui-button" />
+                                    </p:column>
+                            </p:column>
+                            <p:column headerText="Zapisz się" rendered="#{remoteClient.details.role != 'user' and remoteClient.details.role != 'instruktor' and remoteClient.details.role != 'admin'}" >
+                                <p:commandButton
+                                    value="Zapisz się!" 
+                                    action="/public/login?faces-redirect=true"
+                                    icon="pi pi-sign-in"
+                                    styleClass="rounded-button ui-button-success" />
                             </p:column>
                             <p:column rendered="#{remoteClient.details.role == 'admin'}" headerText="Akcja">
                                 <p:commandButton value="Usuń"
@@ -66,10 +114,6 @@
                                                  update="tuesdayTable"
                                                  icon="pi pi-trash"
                                                  styleClass="ui-button-danger" />
-                                <p:commandButton value="Edytuj"
-                                                 action="#{scheduleListBB.editSchedule(schedule)}"
-                                                 style="margin-right: 0.5em"
-                                                 icon="pi pi-pencil" />
                             </p:column>
                         </p:dataTable>
                     </p:tab>
@@ -85,10 +129,36 @@
                             <p:column headerText="Godzina końca">
                                 <h:outputText value="#{schedule.endTime}" />
                             </p:column>
-                            <p:column headerText="Zapisz się">
-                                <p:commandButton value="Zapisz się" action="#"
-                                                 icon="pi pi-sign-in"
-                                                 styleClass="rounded-button ui-button-success" />
+                            <p:column headerText="Zapisz się" rendered="#{remoteClient.details.role == 'user' or remoteClient.details.role == 'instruktor' or remoteClient.details.role == 'admin'}">
+                                <p:column headerText="Zapisz się"  rendered="#{scheduleUserBB.checkPass(remoteClient.details.passesId.id) == true}" >
+                                    <p:commandButton value="Zapisz się"
+                                                     rendered="#{scheduleUserBB.checkIfSigned(schedule.id, remoteClient.details.id) == true}"
+                                                     action="#{scheduleUserBB.signUserToSchedule(schedule.id, remoteClient.details.id)}"
+                                                     update="wednesdayTable"
+                                                     icon="pi pi-sign-in"
+                                                     styleClass="rounded-button ui-button-success" />
+
+                                    <p:commandButton value="Wypisz się"
+                                                     rendered="#{scheduleUserBB.checkToSignOut(schedule.id, remoteClient.details.id) == true}"
+                                                     action="#{scheduleUserBB.deleteScheduleUser(schedule.id, remoteClient.details.id)}"
+                                                     update="wednesdayTable"
+                                                     icon="pi pi-sign-out"
+                                                     styleClass="rounded-button ui-button-danger" />
+                                </p:column>         
+                                <p:column headerText="Zapisz się"  rendered="#{scheduleUserBB.checkPass(remoteClient.details.passesId.id) == false}">
+                                    <p:commandButton value="Kup karnet!"
+                                                     rendered="#{scheduleUserBB.checkIfSigned(schedule.id, remoteClient.details.id) == true}"
+                                                     action="/pages/passList?faces-redirect=true"
+                                                     icon="pi pi-sign-in"
+                                                     styleClass="rounded-button ui-button" />
+                                    </p:column>
+                            </p:column>
+                            <p:column headerText="Zapisz się" rendered="#{remoteClient.details.role != 'user' and remoteClient.details.role != 'instruktor' and remoteClient.details.role != 'admin'}" >
+                                <p:commandButton
+                                    value="Zapisz się!" 
+                                    action="/public/login?faces-redirect=true"
+                                    icon="pi pi-sign-in"
+                                    styleClass="rounded-button ui-button-success" />
                             </p:column>
                             <p:column rendered="#{remoteClient.details.role == 'admin'}" headerText="Akcja">
                                 <p:commandButton value="Usuń"
@@ -96,10 +166,6 @@
                                                  update="wednesdayTable"
                                                  icon="pi pi-trash"
                                                  styleClass="ui-button-danger" />
-                                <p:commandButton value="Edytuj"
-                                                 action="#{scheduleListBB.editSchedule(schedule)}"
-                                                 style="margin-right: 0.5em"
-                                                 icon="pi pi-pencil" />
                             </p:column>
                         </p:dataTable>
                     </p:tab>
@@ -114,10 +180,36 @@
                             <p:column headerText="Godzina końca">
                                 <h:outputText value="#{schedule.endTime}" />
                             </p:column>
-                            <p:column headerText="Zapisz się">
-                                <p:commandButton value="Zapisz się" action="#"
-                                                 icon="pi pi-sign-in"
-                                                 styleClass="rounded-button ui-button-success" />
+                            <p:column headerText="Zapisz się" rendered="#{remoteClient.details.role == 'user' or remoteClient.details.role == 'instruktor' or remoteClient.details.role == 'admin'}">
+                                <p:column headerText="Zapisz się"  rendered="#{scheduleUserBB.checkPass(remoteClient.details.passesId.id) == true}" >
+                                    <p:commandButton value="Zapisz się"
+                                                     rendered="#{scheduleUserBB.checkIfSigned(schedule.id, remoteClient.details.id) == true}"
+                                                     action="#{scheduleUserBB.signUserToSchedule(schedule.id, remoteClient.details.id)}"
+                                                     update="thursdayTable"
+                                                     icon="pi pi-sign-in"
+                                                     styleClass="rounded-button ui-button-success" />
+
+                                    <p:commandButton value="Wypisz się"
+                                                     rendered="#{scheduleUserBB.checkToSignOut(schedule.id, remoteClient.details.id) == true}"
+                                                     action="#{scheduleUserBB.deleteScheduleUser(schedule.id, remoteClient.details.id)}"
+                                                     update="thursdayTable"
+                                                     icon="pi pi-sign-out"
+                                                     styleClass="rounded-button ui-button-danger" />
+                                </p:column>         
+                                <p:column headerText="Zapisz się"  rendered="#{scheduleUserBB.checkPass(remoteClient.details.passesId.id) == false}">
+                                    <p:commandButton value="Kup karnet!"
+                                                     rendered="#{scheduleUserBB.checkIfSigned(schedule.id, remoteClient.details.id) == true}"
+                                                     action="/pages/passList?faces-redirect=true"
+                                                     icon="pi pi-sign-in"
+                                                     styleClass="rounded-button ui-button" />
+                                    </p:column>
+                            </p:column>
+                            <p:column headerText="Zapisz się" rendered="#{remoteClient.details.role != 'user' and remoteClient.details.role != 'instruktor' and remoteClient.details.role != 'admin'}" >
+                                <p:commandButton
+                                    value="Zapisz się!" 
+                                    action="/public/login?faces-redirect=true"
+                                    icon="pi pi-sign-in"
+                                    styleClass="rounded-button ui-button-success" />
                             </p:column>
                             <p:column rendered="#{remoteClient.details.role == 'admin'}" headerText="Akcja">
                                 <p:commandButton value="Usuń"
@@ -125,10 +217,6 @@
                                                  update="thursdayTable"
                                                  icon="pi pi-trash"
                                                  styleClass="ui-button-danger" />
-                                <p:commandButton value="Edytuj"
-                                                 action="#{scheduleListBB.editSchedule(schedule)}"
-                                                 style="margin-right: 0.5em"
-                                                 icon="pi pi-pencil" />
                             </p:column>
                         </p:dataTable>
                     </p:tab>
@@ -143,10 +231,36 @@
                             <p:column headerText="Godzina końca">
                                 <h:outputText value="#{schedule.endTime}" />
                             </p:column>
-                            <p:column headerText="Zapisz się">
-                                <p:commandButton value="Zapisz się" action="#"
-                                                 icon="pi pi-sign-in"
-                                                 styleClass="rounded-button ui-button-success" />
+                            <p:column headerText="Zapisz się" rendered="#{remoteClient.details.role == 'user' or remoteClient.details.role == 'instruktor' or remoteClient.details.role == 'admin'}">
+                                <p:column headerText="Zapisz się"  rendered="#{scheduleUserBB.checkPass(remoteClient.details.passesId.id) == true}" >
+                                    <p:commandButton value="Zapisz się"
+                                                     rendered="#{scheduleUserBB.checkIfSigned(schedule.id, remoteClient.details.id) == true}"
+                                                     action="#{scheduleUserBB.signUserToSchedule(schedule.id, remoteClient.details.id)}"
+                                                     update="fridayTable"
+                                                     icon="pi pi-sign-in"
+                                                     styleClass="rounded-button ui-button-success" />
+
+                                    <p:commandButton value="Wypisz się"
+                                                     rendered="#{scheduleUserBB.checkToSignOut(schedule.id, remoteClient.details.id) == true}"
+                                                     action="#{scheduleUserBB.deleteScheduleUser(schedule.id, remoteClient.details.id)}"
+                                                     update="fridayTable"
+                                                     icon="pi pi-sign-out"
+                                                     styleClass="rounded-button ui-button-danger" />
+                                </p:column>         
+                                <p:column headerText="Zapisz się"  rendered="#{scheduleUserBB.checkPass(remoteClient.details.passesId.id) == false}">
+                                    <p:commandButton value="Kup karnet!"
+                                                     rendered="#{scheduleUserBB.checkIfSigned(schedule.id, remoteClient.details.id) == true}"
+                                                     action="/pages/passList?faces-redirect=true"
+                                                     icon="pi pi-sign-in"
+                                                     styleClass="rounded-button ui-button" />
+                                    </p:column>
+                            </p:column>
+                            <p:column headerText="Zapisz się" rendered="#{remoteClient.details.role != 'user' and remoteClient.details.role != 'instruktor' and remoteClient.details.role != 'admin'}" >
+                                <p:commandButton
+                                    value="Zapisz się!" 
+                                    action="/public/login?faces-redirect=true"
+                                    icon="pi pi-sign-in"
+                                    styleClass="rounded-button ui-button-success" />
                             </p:column>
                             <p:column rendered="#{remoteClient.details.role == 'admin'}" headerText="Akcja">
                                 <p:commandButton value="Usuń"
@@ -154,10 +268,6 @@
                                                  update="fridayTable"
                                                  icon="pi pi-trash"
                                                  styleClass="ui-button-danger" />
-                                <p:commandButton value="Edytuj"
-                                                 action="#{scheduleListBB.editSchedule(schedule)}"
-                                                 style="margin-right: 0.5em"
-                                                 icon="pi pi-pencil" />
                             </p:column>
                         </p:dataTable>
                     </p:tab>
@@ -172,10 +282,36 @@
                             <p:column headerText="Godzina końca">
                                 <h:outputText value="#{schedule.endTime}" />
                             </p:column>
-                            <p:column headerText="Zapisz się">
-                                <p:commandButton value="Zapisz się" action="#"
-                                                 icon="pi pi-sign-in"
-                                                 styleClass="rounded-button ui-button-success" />
+                            <p:column headerText="Zapisz się" rendered="#{remoteClient.details.role == 'user' or remoteClient.details.role == 'instruktor' or remoteClient.details.role == 'admin'}">
+                                <p:column headerText="Zapisz się"  rendered="#{scheduleUserBB.checkPass(remoteClient.details.passesId.id) == true}" >
+                                    <p:commandButton value="Zapisz się"
+                                                     rendered="#{scheduleUserBB.checkIfSigned(schedule.id, remoteClient.details.id) == true}"
+                                                     action="#{scheduleUserBB.signUserToSchedule(schedule.id, remoteClient.details.id)}"
+                                                     update="saturdayTable"
+                                                     icon="pi pi-sign-in"
+                                                     styleClass="rounded-button ui-button-success" />
+
+                                    <p:commandButton value="Wypisz się"
+                                                     rendered="#{scheduleUserBB.checkToSignOut(schedule.id, remoteClient.details.id) == true}"
+                                                     action="#{scheduleUserBB.deleteScheduleUser(schedule.id, remoteClient.details.id)}"
+                                                     update="saturdayTable"
+                                                     icon="pi pi-sign-out"
+                                                     styleClass="rounded-button ui-button-danger" />
+                                </p:column>         
+                                <p:column headerText="Zapisz się"  rendered="#{scheduleUserBB.checkPass(remoteClient.details.passesId.id) == false}">
+                                    <p:commandButton value="Kup karnet!"
+                                                     rendered="#{scheduleUserBB.checkIfSigned(schedule.id, remoteClient.details.id) == true}"
+                                                     action="/pages/passList?faces-redirect=true"
+                                                     icon="pi pi-sign-in"
+                                                     styleClass="rounded-button ui-button" />
+                                    </p:column>
+                            </p:column>
+                            <p:column headerText="Zapisz się" rendered="#{remoteClient.details.role != 'user' and remoteClient.details.role != 'instruktor' and remoteClient.details.role != 'admin'}" >
+                                <p:commandButton
+                                    value="Zapisz się!" 
+                                    action="/public/login?faces-redirect=true"
+                                    icon="pi pi-sign-in"
+                                    styleClass="rounded-button ui-button-success" />
                             </p:column>
                             <p:column rendered="#{remoteClient.details.role == 'admin'}" headerText="Akcja">
                                 <p:commandButton value="Usuń"
@@ -197,10 +333,36 @@
                             <p:column headerText="Godzina końca">
                                 <h:outputText value="#{schedule.endTime}" />
                             </p:column>
-                            <p:column headerText="Zapisz się">
-                                <p:commandButton value="Zapisz się" action="#"
-                                                 icon="pi pi-sign-in"
-                                                 styleClass="rounded-button ui-button-success" />
+                            <p:column headerText="Zapisz się" rendered="#{remoteClient.details.role == 'user' or remoteClient.details.role == 'instruktor' or remoteClient.details.role == 'admin'}">
+                                <p:column headerText="Zapisz się"  rendered="#{scheduleUserBB.checkPass(remoteClient.details.passesId.id) == true}" >
+                                    <p:commandButton value="Zapisz się"
+                                                     rendered="#{scheduleUserBB.checkIfSigned(schedule.id, remoteClient.details.id) == true}"
+                                                     action="#{scheduleUserBB.signUserToSchedule(schedule.id, remoteClient.details.id)}"
+                                                     update="sundayTable"
+                                                     icon="pi pi-sign-in"
+                                                     styleClass="rounded-button ui-button-success" />
+
+                                    <p:commandButton value="Wypisz się"
+                                                     rendered="#{scheduleUserBB.checkToSignOut(schedule.id, remoteClient.details.id) == true}"
+                                                     action="#{scheduleUserBB.deleteScheduleUser(schedule.id, remoteClient.details.id)}"
+                                                     update="sundayTable"
+                                                     icon="pi pi-sign-out"
+                                                     styleClass="rounded-button ui-button-danger" />
+                                </p:column>         
+                                <p:column headerText="Zapisz się"  rendered="#{scheduleUserBB.checkPass(remoteClient.details.passesId.id) == false}">
+                                    <p:commandButton value="Kup karnet!"
+                                                     rendered="#{scheduleUserBB.checkIfSigned(schedule.id, remoteClient.details.id) == true}"
+                                                     action="/pages/passList?faces-redirect=true"
+                                                     icon="pi pi-sign-in"
+                                                     styleClass="rounded-button ui-button" />
+                                    </p:column>
+                            </p:column>
+                            <p:column headerText="Zapisz się" rendered="#{remoteClient.details.role != 'user' and remoteClient.details.role != 'instruktor' and remoteClient.details.role != 'admin'}" >
+                                <p:commandButton
+                                    value="Zapisz się!" 
+                                    action="/public/login?faces-redirect=true"
+                                    icon="pi pi-sign-in"
+                                    styleClass="rounded-button ui-button-success" />
                             </p:column>
                             <p:column rendered="#{remoteClient.details.role == 'admin'}" headerText="Akcja">
                                 <p:commandButton value="Usuń"
@@ -208,10 +370,6 @@
                                                  update="sundayTable"
                                                  icon="pi pi-trash"
                                                  styleClass="ui-button-danger" />
-                                <p:commandButton value="Edytuj"
-                                                 action="#{scheduleListBB.editSchedule(schedule)}"
-                                                 style="margin-right: 0.5em"
-                                                 icon="pi pi-pencil" />
                             </p:column>
                         </p:dataTable>
                     </p:tab>

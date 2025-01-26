@@ -44,4 +44,13 @@ public class PassDAO {
             em.remove(pass);
         }
     }
+    
+    public boolean checkPass(Long id) {
+        Query query = em.createQuery("SELECT COUNT(p) FROM Pass p WHERE p.id = :id");
+        query.setParameter("id", id);
+
+        Long count = (Long) query.getSingleResult();
+
+        return count > 0;
+    }
 }

@@ -5,6 +5,7 @@
 package com.javaproj.pilatesproject.entities;
 
 import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -14,11 +15,13 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.validation.constraints.Size;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 
 /**
@@ -37,6 +40,18 @@ import java.util.Date;
     @NamedQuery(name = "Schedule.findByDay", query = "SELECT s FROM Schedule s WHERE s.day = :day")})
 public class Schedule implements Serializable {
 
+    @Size(max = 255)
+    @Column(name = "start_time")
+    private String startTime;
+    @Size(max = 255)
+    @Column(name = "end_time")
+    private String endTime;
+    @Size(max = 12)
+    @Column(name = "day")
+    private String day;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "scheduleId")
+    private Collection<ScheduleUser> scheduleUserCollection;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -49,15 +64,6 @@ public class Schedule implements Serializable {
     @Column(name = "updated_at")
     @Temporal(TemporalType.TIMESTAMP)
     private Date updatedAt;
-    @Size(max = 255)
-    @Column(name = "start_time")
-    private String startTime;
-    @Size(max = 255)
-    @Column(name = "end_time")
-    private String endTime;
-    @Size(max = 12)
-    @Column(name = "day")
-    private String day;
     @JoinColumn(name = "class_id", referencedColumnName = "id")
     @ManyToOne
     private Class classId;
@@ -109,13 +115,6 @@ public class Schedule implements Serializable {
         this.endTime = endTime;
     }
 
-    public String getDay() {
-        return day;
-    }
-
-    public void setDay(String day) {
-        this.day = day;
-    }
 
     public Class getClassId() {
         return classId;
@@ -148,6 +147,22 @@ public class Schedule implements Serializable {
     @Override
     public String toString() {
         return "com.javaproj.pilatesproject.entities.Schedule[ id=" + id + " ]";
+    }
+
+    public String getDay() {
+        return day;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
+    }
+
+    public Collection<ScheduleUser> getScheduleUserCollection() {
+        return scheduleUserCollection;
+    }
+
+    public void setScheduleUserCollection(Collection<ScheduleUser> scheduleUserCollection) {
+        this.scheduleUserCollection = scheduleUserCollection;
     }
     
 }
