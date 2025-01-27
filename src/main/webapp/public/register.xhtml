@@ -24,7 +24,7 @@
                     <p:inputText id="email" value="#{userListBB.newUser.email}" required="true" requiredMessage="Email jest wymagany" validatorMessage="Niepoprawny format e-maila" styleClass="width-100"/>
                     
                     <p:outputLabel for="password" value="Hasło:" />
-                    <p:inputText id="password" value="#{userListBB.newUser.password}" required="true" requiredMessage="Hasło jest wymagane" validatorMessage="Niepoprawny format hasła" styleClass="width-100"/>
+                    <p:inputText id="password" type="password" value="#{userListBB.newUser.password}" required="true" requiredMessage="Hasło jest wymagane" validatorMessage="Niepoprawny format hasła" styleClass="width-100"/>
                     
                     <p:commandButton value="Dodaj" action="#{userListBB.registerUser}" update="createUserForm" icon="pi pi-save" styleClass="ui-button-success" />
                 </p:panel>

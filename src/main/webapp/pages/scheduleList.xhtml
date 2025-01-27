@@ -15,7 +15,7 @@
                 </div>
                 <p:tabView>
                     <p:tab title="Poniedziałek">
-                        <p:dataTable id="mondayTable" var="schedule" value="#{scheduleListBB.getClassesForDay('Poniedziałek')}">
+                        <p:dataTable id="mondayTable" var="schedule" value="#{scheduleListBB.getClassesForDay('Poniedziałek')}" sortBy="#{schedule.startTime}">
                             <p:column headerText="Nazwa Zajęć">
                                 <h:outputText value="#{schedule.classId.name}" />
                             </p:column>
@@ -67,7 +67,7 @@
                     </p:tab>
 
                     <p:tab title="Wtorek">
-                        <p:dataTable id="tuesdayTable" var="schedule" value="#{scheduleListBB.getClassesForDay('Wtorek')}">
+                        <p:dataTable id="tuesdayTable" var="schedule" value="#{scheduleListBB.getClassesForDay('Wtorek')}" sortBy="#{schedule.startTime}">
                             <p:column headerText="Nazwa Zajęć">
                                 <h:outputText value="#{schedule.classId.name}" />
                             </p:column>
@@ -119,7 +119,7 @@
                     </p:tab>
 
                     <p:tab title="Środa">
-                        <p:dataTable id="wednesdayTable" var="schedule" value="#{scheduleListBB.getClassesForDay('Środa')}">
+                        <p:dataTable id="wednesdayTable" var="schedule" value="#{scheduleListBB.getClassesForDay('Środa')}" sortBy="#{schedule.startTime}">
                             <p:column headerText="Nazwa Zajęć">
                                 <h:outputText value="#{schedule.classId.name}" />
                             </p:column>
@@ -170,7 +170,7 @@
                         </p:dataTable>
                     </p:tab>
                     <p:tab title="Czwartek">
-                        <p:dataTable id="thursdayTable" var="schedule" value="#{scheduleListBB.getClassesForDay('Czwartek')}">
+                        <p:dataTable id="thursdayTable" var="schedule" value="#{scheduleListBB.getClassesForDay('Czwartek')}" sortBy="#{schedule.startTime}">
                             <p:column headerText="Nazwa Zajęć">
                                 <h:outputText value="#{schedule.classId.name}" />
                             </p:column>
@@ -221,7 +221,7 @@
                         </p:dataTable>
                     </p:tab>
                     <p:tab title="Piątek">
-                        <p:dataTable id="fridayTable" var="schedule" value="#{scheduleListBB.getClassesForDay('Piątek')}">
+                        <p:dataTable id="fridayTable" var="schedule" value="#{scheduleListBB.getClassesForDay('Piątek')}" sortBy="#{schedule.startTime}">
                             <p:column headerText="Nazwa Zajęć">
                                 <h:outputText value="#{schedule.classId.name}" />
                             </p:column>
@@ -272,7 +272,7 @@
                         </p:dataTable>
                     </p:tab>
                     <p:tab title="Sobota">
-                        <p:dataTable id="saturdayTable" var="schedule" value="#{scheduleListBB.getClassesForDay('Sobota')}">
+                        <p:dataTable id="saturdayTable" var="schedule" value="#{scheduleListBB.getClassesForDay('Sobota')}" sortBy="#{schedule.startTime}">
                             <p:column headerText="Nazwa Zajęć">
                                 <h:outputText value="#{schedule.classId.name}" />
                             </p:column>
@@ -323,7 +323,7 @@
                         </p:dataTable>
                     </p:tab>
                     <p:tab title="Niedziela">
-                        <p:dataTable id="sundayTable" var="schedule" value="#{scheduleListBB.getClassesForDay('Niedziela')}">
+                        <p:dataTable id="sundayTable" var="schedule" value="#{scheduleListBB.getClassesForDay('Niedziela')}" sortBy="#{schedule.startTime}">
                             <p:column headerText="Nazwa Zajęć">
                                 <h:outputText value="#{schedule.classId.name}" />
                             </p:column>

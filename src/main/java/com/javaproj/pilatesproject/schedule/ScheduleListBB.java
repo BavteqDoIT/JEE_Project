@@ -11,8 +11,10 @@ import jakarta.faces.context.Flash;
 import jakarta.faces.model.SelectItem;
 import jakarta.inject.Inject;
 import jakarta.inject.Named;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 /*
@@ -121,7 +123,12 @@ public class ScheduleListBB {
     }
     
     public List<Schedule> getClassesForDay(String day) {
-        // Wyszukiwanie zajęć w bazie danych na podstawie dnia tygodnia
-        return scheduleDAO.findByDay(day); // Załóżmy, że masz metodę w DAO, która zwraca zajęcia na podstawie dnia
+        // Pobranie zajęć z bazy danych na podstawie dnia tygodnia
+        List<Schedule> schedules = scheduleDAO.findByDay(day);
+
+        // Sortowanie zajęć na podstawie godziny startu (zakładając, że startTime jest w formacie HH:mm)
+        schedules.sort(Comparator.comparing(s -> LocalTime.parse(s.getStartTime())));
+
+        return schedules;
     }
 }
